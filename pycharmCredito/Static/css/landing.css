@@ -1,624 +1,1496 @@
-/* Importa a fonte Inter do Google Fonts.
-   Os pesos disponíveis são: 400, 500, 600, 700 e 800. */
+
+
+/* ==========================================
+
+   FONTE DO SITE
+
+   ========================================== */
+
+/* Importa a fonte Inter. Se remover, será usada outra fonte disponível. */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 
-/* =========================================================
+/* ==========================================
+
    CONFIGURAÇÕES GERAIS
-   ========================================================= */
 
-/* Remove as margens e espaçamentos padrão de todos os elementos.
-   O box-sizing facilita o controle do tamanho dos elementos. */
+   ========================================== */
+
 * {
+
+    /* Remove os espaços externos automáticos. */
+
     margin: 0;
+
+    /* Remove os espaços internos automáticos. */
+
     padding: 0;
+
+    /* Faz as bordas e o padding entrarem no tamanho dos elementos. */
+
     box-sizing: border-box;
+
 }
 
-/* Define a fonte principal da página, a cor de fundo
-   e a cor padrão dos textos. */
+
+/* ==========================================
+
+   CORPO DA PÁGINA
+
+   ========================================== */
+
 body {
+
+    /* Define a fonte dos textos. Se mudar, muda a aparência das letras. */
+
     font-family: 'Inter', sans-serif;
+
+    /* Define a cor lilás do fundo da página. */
+
     background-color: #ddd2eb;
+
+    /* Define a cor padrão dos textos. */
+
     color: #25232A;
+
 }
 
-/* Adiciona um espaço abaixo dos títulos h2. */
+
+/* ==========================================
+
+   TÍTULOS E PARÁGRAFOS
+
+   ========================================== */
+
 h2 {
+
+    /* Cria espaço abaixo dos títulos. Aumentar separa mais do próximo elemento. */
+
     margin-bottom: 15px;
+
 }
 
-/* Adiciona um espaço abaixo dos parágrafos. */
 p {
+
+    /* Cria espaço abaixo dos parágrafos. */
+
     margin-bottom: 15px;
+
 }
 
-/* Remove o sublinhado dos links e define a cor roxa. */
+
+/* ==========================================
+
+   LINKS
+
+   ========================================== */
+
 a {
+
+    /* Remove a linha que aparece embaixo dos links. */
+
     text-decoration: none;
+
+    /* Define a cor roxa padrão dos links. */
+
     color: #5B3A8E;
+
 }
 
-/* Faz com que as imagens nunca ultrapassem o tamanho
-   do elemento onde estão inseridas. */
+
+/* ==========================================
+
+   IMAGENS
+
+   ========================================== */
+
 img {
+
+    /* Impede que a imagem ultrapasse a largura do espaço disponível. */
+
     max-width: 100%;
+
 }
 
 
-/* =========================================================
+/* ==========================================
+
    CABEÇALHO
-   ========================================================= */
 
-/* Define a cor de fundo do elemento header. */
+   ========================================== */
+
 header {
+
+    /* Define a cor roxa do fundo do cabeçalho. */
+
     background-color: #6A4598;
+
 }
 
-/* Organiza os elementos da navegação lado a lado,
-   deixando o logo de um lado e o menu do outro. */
+
+/* ==========================================
+
+   MENU DE NAVEGAÇÃO
+
+   ========================================== */
+
 nav {
+
+    /* Coloca o nome ARO e os links lado a lado. */
+
     display: flex;
+
+    /* Deixa o nome ARO de um lado e os links do outro. */
+
     justify-content: space-between;
+
+    /* Centraliza os elementos na vertical. */
+
     align-items: center;
 
-    /* Cria espaçamento interno vertical e horizontal. */
+    /* Cria 20px em cima/embaixo e 7% da largura nas laterais. */
+
+    /* Se aumentar, o menu fica mais afastado das bordas. */
+
     padding: 20px 7%;
 
-    /* Define a cor de fundo da navegação. */
+    /* Define a cor lilás do fundo do menu. */
+
     background-color: #dcd0eb;
+
 }
 
-/* Estiliza o título/logo dentro da navegação. */
+
+/* ==========================================
+
+   NOME ARO
+
+   ========================================== */
+
 nav h1 {
+
+    /* Define o tamanho do nome ARO. Aumentar deixa as letras maiores. */
+
     font-size: 35px;
+
+    /* Define a cor roxa do nome. */
+
     color: #5B3A8E;
+
+    /* Deixa o nome bem grosso. */
+
     font-weight: 800;
+
 }
 
-/* Organiza os links do menu horizontalmente
-   e cria espaço entre eles. */
+
+/* ==========================================
+
+   LINKS DO MENU
+
+   ========================================== */
+
 .menu {
+
+    /* Coloca os links lado a lado. */
+
     display: flex;
+
+    /* Centraliza os links na vertical. */
+
     align-items: center;
+
+    /* Cria espaço entre os links. Aumentar separa mais. */
+
     gap: 30px;
+
 }
 
-/* Define o tamanho e a espessura dos textos dos links. */
 .menu a {
+
+    /* Define o tamanho das letras dos links. */
+
     font-size: 14px;
+
+    /* Deixa as letras um pouco mais grossas. */
+
     font-weight: 600;
+
 }
 
-/* Estiliza especificamente o botão "Entrar". */
+
+/* ==========================================
+
+   BOTÃO ENTRAR DO MENU
+
+   ========================================== */
+
 .menu .entrar {
+
+    /* Define a cor roxa do fundo do botão. */
+
     background-color: #5B3A8E;
+
+    /* Define a cor branca do texto. */
+
     color: white;
+
+    /* Cria espaço dentro do botão. Aumentar deixa o botão maior. */
+
     padding: 12px 25px;
+
+    /* Arredonda os cantos do botão. */
+
     border-radius: 5px;
+
 }
 
-/* Estiliza o aviso que aparece no cabeçalho.
-   O texto fica centralizado e pequeno. */
+
+/* ==========================================
+
+   AVISO ACADÊMICO
+
+   ========================================== */
+
 .aviso {
+
+    /* Coloca o texto no centro. */
+
     text-align: center;
+
+    /* Define o tamanho das letras. */
+
     font-size: 10px;
+
+    /* Deixa o texto um pouco mais grosso. */
+
     font-weight: 600;
+
+    /* Define a cor branca do texto. */
+
     color: white;
+
+    /* Cria espaço dentro da faixa do aviso. */
+
     padding: 5px;
+
+    /* Remove o espaço externo do aviso. */
+
     margin: 0;
+
 }
 
 
-/* =========================================================
-   SEÇÃO INICIAL
-   ========================================================= */
+/* ==========================================
 
-/* Organiza o conteúdo inicial em duas partes:
-   texto de um lado e imagem do outro. */
+   SEÇÃO INICIAL
+
+   ========================================== */
+
 .inicio {
+
+    /* Coloca os textos e a imagem lado a lado. */
+
     display: flex;
+
+    /* Centraliza os elementos na vertical. */
+
     align-items: center;
+
+    /* Distribui os elementos pela largura disponível. */
+
     justify-content: space-between;
+
+    /* Cria espaço entre o texto e a imagem. */
+
     gap: 30px;
 
-    /* Espaçamento interno da seção. */
+    /* Cria 60px em cima/embaixo e 7% nas laterais. */
+
+    /* Se aumentar, a seção fica mais espaçosa. */
+
     padding: 60px 7%;
 
-    /* Cria uma linha roxa na parte inferior. */
+    /* Cria uma linha roxa de 4px abaixo da seção. */
+
     border-bottom: 4px solid #6A4598;
+
 }
 
-/* Define que o bloco de texto ocupará metade da seção. */
+
+/* ==========================================
+
+   TEXTOS DA SEÇÃO INICIAL
+
+   ========================================== */
+
 .conteudo {
+
+    /* Faz os textos ocuparem metade da largura da seção. */
+
+    /* Se aumentar, sobra menos espaço para a imagem. */
+
     width: 50%;
+
 }
 
-/* Estiliza a pequena etiqueta acima do título. */
+
+/* ==========================================
+
+   ETIQUETA CONTA PARA EMPREENDEDORES
+
+   ========================================== */
+
 .etiqueta {
+
+    /* Permite aplicar tamanho e espaço sem ocupar uma linha inteira. */
+
     display: inline-block;
 
-    /* Espaçamento interno da etiqueta. */
+    /* Cria espaço dentro da etiqueta. Aumentar deixa a etiqueta maior. */
+
     padding: 10px 25px;
 
-    /* Cor de fundo e formato arredondado. */
+    /* Define a cor lilás do fundo. */
+
     background-color: #d2b0f1;
+
+    /* Deixa os cantos bem arredondados. */
+
     border-radius: 30px;
 
+    /* Define a cor roxa do texto. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
     font-size: 13px;
+
+    /* Define a grossura das letras. */
+
     font-weight: 500;
 
-    /* Espaço abaixo da etiqueta. */
+    /* Cria espaço abaixo da etiqueta. */
+
     margin-bottom: 20px;
+
 }
 
-/* Estiliza o título principal da página. */
+
+/* ==========================================
+
+   TÍTULO PRINCIPAL
+
+   ========================================== */
+
 .inicio h2 {
+
+    /* Define o tamanho do título. Aumentar deixa o título maior. */
+
     font-size: 42px;
+
+    /* Deixa as letras bem grossas. */
+
     font-weight: 800;
+
+    /* Define a cor roxa do título. */
+
     color: #5B3A8E;
 
-    /* Define o espaçamento entre as linhas. */
+    /* Controla a distância entre as linhas do título. */
+
+    /* Aumentar separa mais as linhas. */
+
     line-height: 1.2;
+
 }
 
-/* Estiliza o texto de apresentação da seção inicial. */
+
+/* ==========================================
+
+   DESCRIÇÃO INICIAL
+
+   ========================================== */
+
 .inicio p {
+
+    /* Define o tamanho das letras. */
+
     font-size: 15px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Define a cor cinza do texto. */
+
     color: #77727F;
+
+    /* Define a distância entre as linhas do parágrafo. */
+
     line-height: 1.5;
 
-    /* Espaço abaixo do parágrafo. */
+    /* Cria espaço entre a descrição e o botão. */
+
     margin-bottom: 30px;
+
 }
 
-/* Define o tamanho da imagem da seção inicial. */
+
+/* ==========================================
+
+   IMAGEM PRINCIPAL
+
+   ========================================== */
+
 .inicio img {
+
+    /* Faz a imagem ocupar 45% da largura da seção. */
+
+    /* Se aumentar, a imagem fica mais larga. */
+
     width: 45%;
+
+    /* Ajusta a altura automaticamente para não deformar. */
+
     height: auto;
 
-    /* Mantém a proporção da imagem. */
+    /* Mantém a imagem inteira dentro do espaço disponível. */
+
     object-fit: contain;
+
 }
 
-/* Estiliza o botão da seção inicial. */
+
+/* ==========================================
+
+   BOTÃO DA SEÇÃO INICIAL
+
+   ========================================== */
+
 .botao {
+
+    /* Permite usar padding mantendo o botão junto do conteúdo. */
+
     display: inline-block;
+
+    /* Cria espaço dentro do botão. Aumentar deixa o botão maior. */
 
     padding: 12px 45px;
 
-    /* Cria uma borda roxa ao redor do botão. */
+    /* Cria uma borda roxa de 2px. */
+
     border: 2px solid #5B3A8E;
 
-    /* Deixa o botão arredondado. */
+    /* Deixa os cantos bem arredondados. */
+
     border-radius: 30px;
 
+    /* Define o tamanho das letras. */
+
     font-size: 14px;
+
+    /* Deixa as letras um pouco grossas. */
+
     font-weight: 600;
+
 }
 
 
-/* =========================================================
+/* ==========================================
+
    SEÇÃO DE SOLUÇÕES
-   ========================================================= */
 
-/* Centraliza o conteúdo da seção de soluções
-   e cria espaçamento interno. */
+   ========================================== */
+
 .solucoes {
+
+    /* Centraliza os textos dessa seção. */
+
     text-align: center;
+
+    /* Cria espaço interno em cima, embaixo e nas laterais. */
+
     padding: 60px 7%;
+
 }
 
-/* Estiliza o título da seção. */
+
+/* ==========================================
+
+   TÍTULO DAS SOLUÇÕES
+
+   ========================================== */
+
 .solucoes h2 {
+
+    /* Define o tamanho do título. */
+
     font-size: 28px;
+
+    /* Deixa as letras em negrito. */
+
     font-weight: 700;
+
+    /* Define a distância entre as linhas do título. */
+
     line-height: 1.3;
+
 }
 
-/* Estiliza o texto abaixo do título. */
-.solucoes>p {
+
+/* ==========================================
+
+   TEXTOS DAS SOLUÇÕES
+
+   ========================================== */
+
+.solucoes > p {
+
+    /* Define a cor roxa dos parágrafos diretos da seção. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
     font-size: 14px;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.5;
+
 }
 
 
-/* =========================================================
-   CARDS
-   ========================================================= */
+/* ==========================================
 
-/* Organiza os cards lado a lado. */
+   ÁREA DOS CARDS
+
+   ========================================== */
+
 .cards {
+
+    /* Coloca os cards lado a lado. */
+
     display: flex;
 
     /* Distribui os cards pelo espaço disponível. */
+
     justify-content: space-between;
 
-    /* Cria espaço entre os cards. */
+    /* Cria distância entre os cards. */
+
+    /* Se aumentar, os cards ficam mais separados. */
+
     gap: 20px;
 
     /* Cria espaço acima dos cards. */
+
     margin-top: 40px;
+
 }
 
-/* Define o comportamento de cada card. */
+
+/* ==========================================
+
+   CADA CARD
+
+   ========================================== */
+
 .card {
+
+    /* Faz os cards dividirem igualmente o espaço disponível. */
+
     flex: 1;
+
+    /* Permite que o card diminua quando faltar espaço. */
+
     min-width: 0;
 
-    /* Centraliza o conteúdo do card. */
+    /* Centraliza os textos e as imagens. */
+
     text-align: center;
+
 }
 
-/* Define o tamanho das imagens/ícones dos cards. */
+
+/* ==========================================
+
+   ÍCONES DOS CARDS
+
+   ========================================== */
+
 .icone-img {
+
+    /* Coloca o ícone em uma linha própria. */
+
     display: block;
+
+    /* Define a largura do ícone. */
+
     width: 110px;
+
+    /* Define a altura do ícone. */
+
     height: 110px;
 
-    /* Evita que a imagem fique deformada. */
+    /* Faz a imagem caber sem ficar deformada. */
+
     object-fit: contain;
 
-    /* Centraliza a imagem e cria espaço abaixo dela. */
+    /* Centraliza a imagem e cria 20px abaixo dela. */
+
     margin: 0 auto 20px;
+
 }
 
-/* Estiliza o título de cada card. */
+
+/* ==========================================
+
+   TÍTULO DOS CARDS
+
+   ========================================== */
+
 .card h3 {
+
+    /* Define o tamanho do título de cada card. */
+
     font-size: 16px;
+
+    /* Deixa os títulos em negrito. */
+
     font-weight: 700;
+
+    /* Cria espaço entre o título e a descrição. */
+
     margin-bottom: 10px;
+
 }
 
-/* Estiliza o texto dos cards. */
+
+/* ==========================================
+
+   DESCRIÇÃO DOS CARDS
+
+   ========================================== */
+
 .card p {
+
+    /* Define a cor cinza do texto. */
+
     color: #77727F;
+
+    /* Define o tamanho das letras. */
+
     font-size: 12px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.5;
+
 }
 
 
-/* =========================================================
-   SEÇÃO DE SEGURANÇA
-   ========================================================= */
+/* ==========================================
 
-/* Cria uma seção dividida entre imagem e texto. */
+   SEÇÃO DE SEGURANÇA
+
+   ========================================== */
+
 .seguranca {
+
+    /* Coloca imagem e texto lado a lado. */
+
     display: flex;
+
+    /* Centraliza imagem e texto na vertical. */
+
     align-items: center;
+
+    /* Distribui o espaço entre os elementos. */
+
     justify-content: space-between;
+
+    /* Cria distância entre a imagem e o texto. */
+
     gap: 50px;
 
+    /* Cria espaço interno da seção. */
+
     padding: 60px 7%;
 
-    /* Fundo roxo claro. */
+    /* Define o fundo roxo claro da seção. */
+
     background-color: #c5a0f4;
+
 }
 
-/* Define o tamanho da imagem da seção de segurança. */
+
+/* ==========================================
+
+   IMAGEM DA SEGURANÇA
+
+   ========================================== */
+
 .seguranca img {
+
+    /* Faz a imagem ocupar 35% da largura. */
+
     width: 35%;
+
+    /* Mantém a altura proporcional. */
+
     height: auto;
+
+    /* Impede que a imagem seja cortada ou deformada. */
+
     object-fit: contain;
+
 }
 
-/* Faz o bloco de texto ocupar o espaço restante. */
+
+/* ==========================================
+
+   ÁREA DE TEXTO DA SEGURANÇA
+
+   ========================================== */
+
 .seguranca div {
+
+    /* Faz o texto ocupar o espaço que sobrar ao lado da imagem. */
+
     flex: 1;
+
 }
 
-/* Estiliza o pequeno título acima do título principal. */
+
+/* ==========================================
+
+   TÍTULO PEQUENO DA SEGURANÇA
+
+   ========================================== */
+
 .seguranca h4 {
+
+    /* Cria espaço abaixo do título pequeno. */
+
     margin-bottom: 15px;
+
+    /* Define o tamanho das letras. */
+
     font-size: 12px;
+
+    /* Deixa o texto em negrito. */
+
     font-weight: 700;
+
 }
 
-/* Estiliza o título principal da seção de segurança. */
+
+/* ==========================================
+
+   TÍTULO PRINCIPAL DA SEGURANÇA
+
+   ========================================== */
+
 .seguranca h2 {
+
+    /* Define a cor branca das letras. */
+
     color: white;
+
+    /* Define o tamanho do título. */
+
     font-size: 30px;
+
+    /* Deixa o título em negrito. */
+
     font-weight: 700;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.3;
+
 }
 
-/* Estiliza o parágrafo da seção de segurança. */
+
+/* ==========================================
+
+   TEXTO DA SEGURANÇA
+
+   ========================================== */
+
 .seguranca p {
+
+    /* Define a cor branca do texto. */
+
     color: white;
+
+    /* Define o tamanho das letras. */
+
     font-size: 16px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.5;
+
 }
 
 
-/* =========================================================
-   SEÇÃO DE PRATICIDADE
-   ========================================================= */
+/* ==========================================
 
-/* Organiza texto e imagem lado a lado. */
+   SEÇÃO DE PRATICIDADE
+
+   ========================================== */
+
 .praticidade {
+
+    /* Coloca texto e imagem lado a lado. */
+
     display: flex;
+
+    /* Distribui o espaço entre os elementos. */
+
     justify-content: space-between;
+
+    /* Centraliza os elementos na vertical. */
+
     align-items: center;
+
+    /* Cria distância entre texto e imagem. */
+
     gap: 40px;
 
+    /* Cria espaço interno da seção. */
+
     padding: 60px 7%;
+
 }
 
-/* Define que o bloco de texto ocupará metade da seção. */
+
+/* ==========================================
+
+   ÁREA DE TEXTO DA PRATICIDADE
+
+   ========================================== */
+
 .praticidade div {
+
+    /* Faz o texto ocupar metade da largura da seção. */
+
     width: 50%;
+
 }
 
-/* Estiliza o pequeno título da seção. */
+
+/* ==========================================
+
+   TÍTULO PEQUENO DA PRATICIDADE
+
+   ========================================== */
+
 .praticidade h4 {
+
+    /* Cria espaço abaixo do título pequeno. */
+
     margin-bottom: 15px;
+
+    /* Define o tamanho das letras. */
+
     font-size: 12px;
+
+    /* Deixa o texto em negrito. */
+
     font-weight: 700;
+
 }
 
-/* Estiliza o título principal. */
+
+/* ==========================================
+
+   TÍTULO PRINCIPAL DA PRATICIDADE
+
+   ========================================== */
+
 .praticidade h2 {
+
+    /* Define a cor roxa do título. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
     font-size: 35px;
+
+    /* Deixa o título em negrito. */
+
     font-weight: 700;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.3;
+
 }
 
-/* Estiliza o texto da seção. */
+
+/* ==========================================
+
+   TEXTO DA PRATICIDADE
+
+   ========================================== */
+
 .praticidade p {
+
+    /* Define a cor cinza do texto. */
+
     color: #77727F;
+
+    /* Define o tamanho das letras. */
+
     font-size: 15px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.5;
+
 }
 
-/* Define o tamanho da imagem da seção. */
+
+/* ==========================================
+
+   IMAGEM DA PRATICIDADE
+
+   ========================================== */
+
 .praticidade img {
+
+    /* Faz a imagem ocupar 35% da largura. */
+
     width: 35%;
+
+    /* Mantém a altura proporcional à largura. */
+
     height: auto;
+
+    /* Faz a imagem caber sem deformar. */
+
     object-fit: contain;
+
 }
 
 
-/* =========================================================
-   CHAMADA FINAL
-   ========================================================= */
+/* ==========================================
 
-/* Cria a seção final de chamada para ação. */
+   CHAMADA FINAL
+
+   ========================================== */
+
 .final {
+
+    /* Coloca o texto e o botão lado a lado. */
+
     display: flex;
+
+    /* Distribui o espaço entre os elementos. */
+
     justify-content: space-between;
+
+    /* Centraliza os elementos na vertical. */
+
     align-items: center;
+
+    /* Cria distância entre o texto e o botão. */
+
     gap: 30px;
+
+    /* Cria espaço dentro da seção. */
 
     padding: 45px 7%;
 
+    /* Define o fundo roxo claro. */
+
     background-color: #c5a0f4;
+
+    /* Define a cor branca padrão dos textos da seção. */
+
     color: white;
+
 }
 
-/* Define o tamanho do bloco de texto. */
+
+/* ==========================================
+
+   TEXTOS DA CHAMADA FINAL
+
+   ========================================== */
+
 .final div {
+
+    /* Faz a área de texto ocupar 60% da largura. */
+
     width: 60%;
+
 }
 
-/* Estiliza o título da chamada final. */
+
+/* ==========================================
+
+   TÍTULO DA CHAMADA FINAL
+
+   ========================================== */
+
 .final h2 {
+
+    /* Impede que o título passe de 450px de largura. */
+
     max-width: 450px;
+
+    /* Define o tamanho das letras. */
+
     font-size: 28px;
+
+    /* Deixa o título bem grosso. */
+
     font-weight: 800;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.3;
+
 }
 
-/* Estiliza o texto da chamada final. */
+
+/* ==========================================
+
+   DESCRIÇÃO DA CHAMADA FINAL
+
+   ========================================== */
+
 .final p {
+
+    /* Define o tamanho das letras. */
+
     font-size: 15px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Controla a distância entre as linhas. */
+
     line-height: 1.5;
+
 }
 
-/* Estiliza o botão da chamada final. */
+
+/* ==========================================
+
+   BOTÃO COMEÇAR AGORA
+
+   ========================================== */
+
 .botao-final {
+
+    /* Permite aplicar tamanho e padding ao link. */
+
     display: inline-block;
+
+    /* Cria espaço dentro do botão. Aumentar deixa o botão maior. */
 
     padding: 15px 30px;
 
-    /* Deixa o botão arredondado. */
+    /* Deixa os cantos bem arredondados. */
+
     border-radius: 30px;
 
+    /* Define a cor roxa do fundo do botão. */
+
     background-color: #5B3A8E;
+
+    /* Define a cor branca do texto. */
+
     color: white;
 
-    /* Cria uma borda branca. */
+    /* Cria uma borda branca de 2px. */
+
     border: 2px solid white;
 
+    /* Define o tamanho das letras. */
+
     font-size: 14px;
+
+    /* Deixa as letras um pouco grossas. */
+
     font-weight: 600;
 
     /* Centraliza o texto dentro do botão. */
+
     text-align: center;
+
 }
 
 
-/* =========================================================
-   RODAPÉ
-   ========================================================= */
+/* ==========================================
 
-/* Define o espaçamento e o alinhamento do rodapé. */
+   RODAPÉ
+
+   ========================================== */
+
 footer {
+
+    /* Cria espaço entre os textos e as bordas do rodapé. */
+
     padding: 35px;
+
+    /* Centraliza os textos do rodapé. */
+
     text-align: center;
+
+    /* Define o fundo lilás do rodapé. */
 
     background-color: #ddd2eb;
+
 }
 
-/* Organiza os links do rodapé lado a lado. */
+
+/* ==========================================
+
+   LINKS DO RODAPÉ
+
+   ========================================== */
+
 .links {
+
+    /* Coloca os links lado a lado. */
+
     display: flex;
+
+    /* Centraliza os links na horizontal. */
+
     justify-content: center;
 
-    /* Espaço entre os links. */
+    /* Cria espaço entre os links. */
+
     gap: 40px;
 
-    /* Espaço abaixo dos links. */
+    /* Cria espaço abaixo dos links. */
+
     margin-bottom: 25px;
+
 }
 
-/* Estiliza os links do rodapé. */
+
+/* ==========================================
+
+   TEXTO DOS LINKS DO RODAPÉ
+
+   ========================================== */
+
 .links a {
+
+    /* Define o tamanho das letras dos links. */
+
     font-size: 14px;
+
+    /* Deixa as letras um pouco grossas. */
+
     font-weight: 500;
+
 }
 
-/* Estiliza o texto do rodapé. */
+
+/* ==========================================
+
+   PARÁGRAFO DO RODAPÉ
+
+   ========================================== */
+
 footer p {
+
+    /* Define o tamanho das letras. */
+
     font-size: 13px;
+
+    /* Define a grossura normal das letras. */
+
     font-weight: 400;
+
+    /* Cria espaço abaixo do parágrafo. */
+
     margin-bottom: 25px;
+
 }
 
-/* Estiliza o título menor do rodapé. */
+
+/* ==========================================
+
+   TÍTULO FINAL DO RODAPÉ
+
+   ========================================== */
+
 footer h4 {
+
+    /* Define o tamanho das letras. */
+
     font-size: 13px;
+
+    /* Deixa o texto em negrito. */
+
     font-weight: 700;
+
 }
 
 
-/* =========================================================
-   RESPONSIVIDADE - TABLET
-   ========================================================= */
+/* ==========================================
 
-/* Essas regras serão aplicadas quando a tela
-   tiver no máximo 900px de largura. */
+   RESPONSIVIDADE PARA TABLETS
+
+   ========================================== */
+
+/* Aplica as regras abaixo quando a tela tem 900px ou menos. */
+
+/* Se aumentar 900px, essas mudanças passam a valer em telas maiores também. */
+
 @media (max-width: 900px) {
 
-    /* Diminui o espaço entre os itens do menu.
-       Permite que eles quebrem para outra linha. */
     .menu {
+
+        /* Diminui o espaço entre os links do menu. */
+
         gap: 15px;
+
+        /* Permite que os links passem para outra linha. */
+
         flex-wrap: wrap;
+
+        /* Centraliza os links na horizontal. */
+
         justify-content: center;
+
     }
 
-    /* Diminui o tamanho do título principal. */
     .inicio h2 {
+
+        /* Diminui o título principal para caber melhor. */
+
         font-size: 32px;
+
     }
 
-    /* Permite que os cards ocupem mais de uma linha. */
     .cards {
+
+        /* Permite que os cards passem para outra linha. */
+
         flex-wrap: wrap;
+
+        /* Centraliza os cards. */
+
         justify-content: center;
+
     }
 
-    /* Cada card passa a ocupar aproximadamente 45% da largura. */
     .card {
+
+        /* Desativa a divisão automática de espaço do flex. */
+
         flex: none;
+
+        /* Faz cada card ocupar 45% da largura. */
+
+        /* Assim normalmente cabem dois cards por linha. */
+
         width: 45%;
+
     }
 
-    /* Diminui o tamanho do título da seção de segurança. */
     .seguranca h2 {
+
+        /* Diminui o título da seção de segurança. */
+
         font-size: 26px;
+
     }
+
 }
 
 
-/* =========================================================
-   RESPONSIVIDADE - CELULAR
-   ========================================================= */
+/* ==========================================
 
-/* Essas regras serão aplicadas em telas
-   com no máximo 600px de largura. */
+   RESPONSIVIDADE PARA CELULARES
+
+   ========================================== */
+
+/* Aplica as regras abaixo quando a tela tem 600px ou menos. */
+
 @media (max-width: 600px) {
 
-    /* Coloca o logo e o menu um abaixo do outro. */
     nav {
+
+        /* Coloca o nome ARO acima dos links do menu. */
+
         flex-direction: column;
+
+        /* Cria espaço entre o nome e os links. */
+
         gap: 20px;
+
     }
 
-    /* Centraliza os links do menu e diminui o espaço entre eles. */
     .menu {
+
+        /* Centraliza os links do menu. */
+
         justify-content: center;
+
+        /* Diminui a distância entre os links. */
+
         gap: 15px;
+
     }
 
-    /* Todas essas seções passam de horizontal
-       para vertical no celular. */
     .inicio,
+
     .seguranca,
+
     .praticidade,
+
     .final {
+
+        /* Coloca o texto e a imagem um abaixo do outro. */
+
         flex-direction: column;
+
+        /* Centraliza os textos dessas seções. */
+
         text-align: center;
+
+        /* Cria distância entre os elementos. */
+
         gap: 30px;
+
     }
 
-    /* Faz os blocos de conteúdo ocuparem toda a largura. */
     .conteudo,
+
     .seguranca div,
+
     .praticidade div,
+
     .final div {
+
+        /* Faz os blocos de texto ocuparem toda a largura. */
+
         width: 100%;
+
     }
 
-    /* Diminui o título principal no celular. */
     .inicio h2 {
+
+        /* Diminui o título principal no celular. */
+
         font-size: 28px;
+
     }
 
-    /* Aumenta a largura das imagens para ficarem
-       melhor visíveis em telas pequenas. */
     .inicio img,
+
     .seguranca img,
+
     .praticidade img {
+
+        /* Faz as imagens ocuparem 80% da largura disponível. */
+
+        /* Se aumentar, ficam maiores no celular. */
+
         width: 80%;
+
     }
 
-    /* Diminui o título da seção de soluções. */
     .solucoes h2 {
+
+        /* Diminui o título das soluções. */
+
         font-size: 24px;
+
     }
 
-    /* Cada card passa a ocupar uma linha inteira. */
     .card {
+
+        /* Faz cada card ocupar uma linha inteira. */
+
         width: 100%;
+
     }
 
-    /* Reduz um pouco o tamanho dos ícones no celular. */
     .icone-img {
+
+        /* Diminui a largura dos ícones no celular. */
+
         width: 100px;
+
+        /* Diminui a altura dos ícones no celular. */
+
         height: 100px;
+
     }
 
-    /* Ajusta o tamanho do título da segurança. */
     .seguranca h2 {
+
+        /* Ajusta o tamanho do título de segurança. */
+
         font-size: 26px;
+
     }
 
-    /* Ajusta o tamanho do título da praticidade. */
     .praticidade h2 {
+
+        /* Ajusta o tamanho do título de praticidade. */
+
         font-size: 28px;
+
     }
 
-    /* Ajusta o tamanho do título da chamada final
-       e centraliza horizontalmente. */
     .final h2 {
+
+        /* Diminui o título da chamada final. */
+
         font-size: 24px;
+
+        /* Centraliza o título dentro do espaço disponível. */
+
         margin-left: auto;
+
+        /* Completa a centralização do título. */
+
         margin-right: auto;
+
     }
 
-    /* Permite que os links do rodapé quebrem
-       para várias linhas em telas pequenas. */
     .links {
+
+        /* Permite que os links do rodapé passem para outra linha. */
+
         flex-wrap: wrap;
+
+        /* Diminui a distância entre os links. */
+
         gap: 15px;
+
     }
+
 }
+

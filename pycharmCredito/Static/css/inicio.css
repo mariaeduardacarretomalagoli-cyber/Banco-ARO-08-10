@@ -1,44 +1,412 @@
+
+
+/* ==========================================
+
+   CONFIGURAÇÕES GERAIS
+
+   ========================================== */
+
 * {
+
+    /* Remove os espaços externos automáticos dos elementos. */
+
     margin: 0;
+
+    /* Remove os espaços internos automáticos. */
+
     padding: 0;
+
+    /* Faz o padding e as bordas entrarem no tamanho do elemento. */
+
     box-sizing: border-box;
+
 }
+
+
+/* ==========================================
+
+   CORPO DA PÁGINA
+
+   ========================================== */
 
 body {
+
+    /* Define a fonte dos textos do site. */
+
+    /* Se trocar Arial por outra fonte, muda a aparência das letras. */
+
     font-family: Arial, sans-serif;
+
+    /* Define a cor do fundo da página. */
+
     background-color: #F6F3F2;
+
+    /* Faz a página ocupar pelo menos toda a altura da tela. */
+
+    min-height: 100vh;
+
 }
+
+
+/* ==========================================
+
+   CABEÇALHO
+
+   ========================================== */
 
 header {
+
+    /* Define a cor branca do cabeçalho. */
+
     background-color: white;
-    padding: 20px;
+
+    /* Cria espaço entre os elementos e as bordas do cabeçalho. */
+
+    /* Se aumentar, o cabeçalho ocupa mais espaço. */
+
+    padding: 20px 35px;
+
+    /* Permite colocar o logo, menu e botões lado a lado. */
+
     display: flex;
+
+    /* Centraliza os elementos na vertical. */
+
     align-items: center;
+
+    /* Deixa os elementos distribuídos pelo cabeçalho. */
+
     justify-content: space-between;
+
+    /* Cria distância entre os elementos. */
+
+    gap: 20px;
+
+    /* Cria uma linha fina abaixo do cabeçalho. */
+
+    border-bottom: 1px solid #DDD9E3;
+
 }
+
+
+/* ==========================================
+
+   NOME ARO NO CABEÇALHO
+
+   ========================================== */
 
 header h2 {
+
+    /* Define a cor roxa do nome ARO. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
+    /* Se aumentar, o nome ARO fica maior. */
+
+    font-size: 26px;
+
+    /* Deixa o nome em negrito. */
+
+    font-weight: 700;
+
 }
+
+
+/* ==========================================
+
+   MENU DE NAVEGAÇÃO
+
+   ========================================== */
 
 nav {
+
+    /* Coloca os links do menu lado a lado. */
+
     display: flex;
+
+    /* Centraliza os links na vertical. */
+
+    align-items: center;
+
+    /* Cria distância entre os links. */
+
+    /* Se aumentar, os links ficam mais separados. */
+
     gap: 30px;
+
 }
+
+
+/* ==========================================
+
+   LINKS DO MENU
+
+   ========================================== */
 
 nav a {
+
+    /* Remove a linha que aparece embaixo dos links. */
+
     text-decoration: none;
+
+    /* Define a cor roxa dos links. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras do menu. */
+
+    font-size: 15px;
+
+    /* Define a grossura das letras. */
+
+    font-weight: 500;
+
 }
+
+
+/* ==========================================
+
+   MOUSE SOBRE OS LINKS
+
+   ========================================== */
+
+nav a:hover {
+
+    /* Coloca uma linha embaixo do link ao passar o mouse. */
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+
+   NOME DO USUÁRIO
+
+   ========================================== */
 
 header span {
+
+    /* Define a cor roxa do nome do usuário logado. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras do nome. */
+
+    font-size: 15px;
+
+    /* Deixa o nome em negrito. */
+
+    font-weight: 700;
+
 }
+
+
+/* ==========================================
+
+   LINK EDITAR PERFIL
+
+   ========================================== */
+
+header > a {
+
+    /* Remove o sublinhado do link Editar perfil. */
+
+    text-decoration: none;
+
+    /* Define a cor roxa do link. */
+
+    color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
+    font-size: 14px;
+
+    /* Deixa as letras um pouco mais grossas. */
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================
+
+   MOUSE SOBRE EDITAR PERFIL
+
+   ========================================== */
+
+header > a:hover {
+
+    /* Mostra o sublinhado quando o mouse passa no link. */
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================
+
+   BOTÃO SAIR
+
+   ========================================== */
+
+header button {
+
+    /* Define a cor roxa do fundo do botão. */
+
+    background-color: #5B3A8E;
+
+    /* Define a cor branca do texto Sair. */
+
+    color: white;
+
+    /* Remove a borda padrão do navegador. */
+
+    border: none;
+
+    /* Cria espaço dentro do botão. */
+
+    /* 10px em cima/embaixo e 20px nas laterais. */
+
+    /* Se aumentar, o botão fica maior. */
+
+    padding: 10px 20px;
+
+    /* Arredonda os cantos do botão. */
+
+    border-radius: 8px;
+
+    /* Define o tamanho das letras do botão. */
+
+    font-size: 14px;
+
+    /* Deixa o texto em negrito. */
+
+    font-weight: 600;
+
+    /* Mostra a mãozinha quando o mouse passa sobre o botão. */
+
+    cursor: pointer;
+
+}
+
+
+/* ==========================================
+
+   MOUSE SOBRE O BOTÃO SAIR
+
+   ========================================== */
+
+header button:hover {
+
+    /* Escurece o roxo ao passar o mouse no botão. */
+
+    background-color: #482C73;
+
+}
+
+
+/* ==========================================
+
+   CONTEÚDO PRINCIPAL
+
+   ========================================== */
 
 main {
+
+    /* Cria espaço entre o conteúdo e as bordas da página. */
+
+    /* Se aumentar, o conteúdo fica mais afastado das bordas. */
+
     padding: 40px;
+
 }
 
+
+/* ==========================================
+
+   TÍTULO DE BOAS-VINDAS
+
+   ========================================== */
+
 main h2 {
+
+    /* Define a cor roxa do título Bem-vindo. */
+
     color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
+
+    /* Se aumentar, o título fica maior. */
+
+    font-size: 28px;
+
+    /* Deixa o título em negrito. */
+
+    font-weight: 700;
+
 }
+
+
+/* ==========================================
+
+   RESPONSIVIDADE PARA CELULARES
+
+   ========================================== */
+
+/* Aplica estas regras quando a tela tem 700px ou menos. */
+
+@media (max-width: 700px) {
+
+    header {
+
+        /* Permite que os elementos passem para a linha de baixo. */
+
+        flex-wrap: wrap;
+
+        /* Reduz o espaço dentro do cabeçalho. */
+
+        padding: 20px;
+
+    }
+
+    nav {
+
+        /* Permite que os links passem para outra linha. */
+
+        flex-wrap: wrap;
+
+        /* Diminui a distância entre os links. */
+
+        gap: 15px;
+
+    }
+
+    nav a {
+
+        /* Diminui um pouco as letras do menu. */
+
+        font-size: 13px;
+
+    }
+
+    main {
+
+        /* Diminui a distância entre o conteúdo e as bordas da tela. */
+
+        padding: 25px 20px;
+
+    }
+
+    main h2 {
+
+        /* Reduz o título para caber melhor no celular. */
+
+        font-size: 23px;
+
+    }
+
+}
+

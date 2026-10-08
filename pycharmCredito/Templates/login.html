@@ -1,199 +1,289 @@
+
 <!DOCTYPE html>
+<!-- Informa ao navegador que estamos usando HTML5. -->
+
 <html lang="pt-BR">
+<!-- Define o idioma como português brasileiro. -->
 
 <head>
+<!-- Guarda as configurações da página. -->
 
-    <!-- Define a codificação de caracteres da página -->
-    <meta charset="UTF-8">
+    <!-- Permite mostrar acentos e caracteres especiais corretamente. -->
+<meta charset="UTF-8">
 
-    <!-- Faz a página se adaptar a celulares e tablets -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Faz a página se adaptar ao tamanho da tela. -->
+<!-- initial-scale=1.0 mantém o tamanho normal no celular. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Nome que aparece na aba do navegador -->
-    <title>Entrar | ARO</title>
+    <!-- Nome que aparece na aba do navegador. -->
+<!-- Se mudar o texto, muda o título da aba. -->
+<title>Entrar | ARO</title>
 
-    <!-- Conecta o HTML ao arquivo CSS -->
-    <link rel="stylesheet" href="static/css/login.css">
+    <!-- Conecta o HTML ao arquivo login.css. -->
+<!-- Se o caminho estiver errado, a página ficará sem esse CSS. -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 
 </head>
 
-
 <body>
-
-    <!-- =====================================================
-         CONTAINER PRINCIPAL
-         Contém o logo e o formulário de login
-         ===================================================== -->
-
-    <main class="pagina-login">
+<!-- Aqui começa o conteúdo que aparece na tela. -->
 
 
-        <!-- =================================================
-             ÁREA DO LOGO
-             ================================================= -->
+    <!-- ========================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ========================================== -->
 
-        <section class="area-logo">
+    <!-- Agrupa o logo e o formulário de login. -->
+<!-- O CSS controla o tamanho e a posição dessa área. -->
+<main class="pagina-login">
 
-            <!--
-                Imagem do logo ARO.
 
-                O arquivo deve estar em:
-                static/img/logo-aro.png
-            -->
+        <!-- ========================================== -->
+<!-- ÁREA DO LOGO -->
+<!-- ========================================== -->
 
-            <img src="{{ url_for('static', filename='img/logo-aro.png') }}" alt="Logo ARO" class="logo-aro">
+        <!-- Cria a área onde aparece o logo do BancoARO. -->
+<section class="area-logo">
+
+            <!-- Mostra a imagem do logo. -->
+<!-- src informa onde está a imagem. -->
+<!-- alt é a descrição caso ela não carregue. -->
+<!-- class permite alterar seu tamanho no CSS. -->
+<img
+
+                src="{{ url_for('static', filename='img/logo-aro.png') }}"
+
+                alt="Logo ARO"
+
+                class="logo-aro"
+>
 
         </section>
+<!-- Termina a área do logo. -->
 
 
-        <!-- =================================================
-             ÁREA DO LOGIN
-             ================================================= -->
+        <!-- ========================================== -->
+<!-- ÁREA DO LOGIN -->
+<!-- ========================================== -->
 
-        <section class="area-login">
-
-
-            <!-- =============================================
-                 CARD DO LOGIN
-                 ============================================= -->
-
-            <div class="card-login">
+        <!-- Agrupa o formulário e os textos da página. -->
+<section class="area-login">
 
 
-                <!-- =========================================
-                     CABEÇALHO
-                     ========================================= -->
+            <!-- ========================================== -->
+<!-- CARD DE LOGIN -->
+<!-- ========================================== -->
 
-                <div class="cabecalho-login">
+            <!-- Cria a caixa que contém o formulário. -->
+<!-- O CSS controla a cor, o tamanho e as bordas. -->
+<div class="card-login">
 
-                    <!-- Título principal -->
-                    <h1>Entre na sua conta</h1>
 
-                    <!-- Texto explicativo -->
-                    <p>
+                <!-- ========================================== -->
+<!-- CABEÇALHO -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o título e a descrição do login. -->
+<div class="cabecalho-login">
+
+                    <!-- Título principal. Se mudar o texto, muda na tela. -->
+<h1>Entre na sua conta</h1>
+
+                    <!-- Texto que aparece abaixo do título. -->
+<p>
+
                         Informe seus dados de acesso abaixo para prosseguir.
-                    </p>
+</p>
 
                 </div>
 
 
-                <!-- =========================================
-                     FORMULÁRIO
-                     ========================================= -->
+                <!-- ========================================== -->
+<!-- FORMULÁRIO DE LOGIN -->
+<!-- ========================================== -->
 
-                <form action="/login" method="POST" class="form-login">
-
-
-                    <!-- =====================================
-                         CAMPO DE E-MAIL
-                         ===================================== -->
-
-                    <div class="campo">
-
-                        <label for="email">
-                            E-mail
-                        </label>
-
-                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-
-                    </div>
+                <!-- form cria o formulário de login. -->
+<!-- action envia os dados para a função entrar_usuario() do Flask. -->
+<!-- POST envia os dados ao servidor quando clicar no botão. -->
+<form action="{{ url_for('entrar_usuario') }}" method="POST" class="form-login">
 
 
-                    <!-- =====================================
-                         CAMPO DE SENHA
-                         ===================================== -->
+                    <!-- ========================================== -->
+<!-- CAMPO E-MAIL -->
+<!-- ========================================== -->
 
-                    <div class="campo">
+                    <!-- Agrupa o texto e a caixa de e-mail. -->
+<div class="campo">
 
-                        <label for="senha">
-                            Senha
-                        </label>
+                        <!-- Mostra o texto acima da caixa. -->
+<!-- for=email liga esse texto ao input com id=email. -->
+<label for="email">E-mail</label>
 
-                        <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+                        <!-- type=email verifica o formato básico do e-mail. -->
+<!-- id=email identifica o campo na página. -->
+<!-- name=email é o nome que o Python usa para receber o valor. -->
+<!-- placeholder mostra um exemplo antes de digitar. -->
+<!-- required impede enviar o formulário com o campo vazio. -->
+<input
 
-                    </div>
+                            type="email"
 
-                    <!-- =====================================
-                         MENSAGENS DO FLASK
-                         ===================================== -->
+                            id="email"
 
-                    {% with mensagens = get_flashed_messages() %}
+                            name="email"
 
-                    {% if mensagens %}
+                            placeholder="seu@email.com"
 
-                    <div class="mensagens">
-
-                        {% for mensagem in mensagens %}
-
-                        <p>{{ mensagem }}</p>
-
-                        {% endfor %}
+                            required
+>
 
                     </div>
+<!-- Termina o campo de e-mail. -->
 
-                    {% endif %}
+
+                    <!-- ========================================== -->
+<!-- CAMPO SENHA -->
+<!-- ========================================== -->
+
+                    <!-- Agrupa o texto e a caixa de senha. -->
+<div class="campo">
+
+                        <!-- Mostra o nome do campo. -->
+<label for="senha">Senha</label>
+
+                        <!-- type=password esconde a senha enquanto é digitada. -->
+<!-- Se mudar para text, os caracteres ficarão visíveis. -->
+<!-- name=senha precisa combinar com request.form["senha"]. -->
+<!-- placeholder mostra um exemplo dentro da caixa. -->
+<!-- required obriga preencher a senha. -->
+<input
+
+                            type="password"
+
+                            id="senha"
+
+                            name="senha"
+
+                            placeholder="••••••••"
+
+                            required
+>
+
+                    </div>
+<!-- Termina o campo de senha. -->
+
+
+                    <!-- ========================================== -->
+<!-- MENSAGENS DO FLASK -->
+<!-- ========================================== -->
+
+                    <!-- Busca as mensagens enviadas pelo main.py. -->
+<!-- Exemplo: senha incorreta ou usuário inativo. -->
+
+                    {% with mensagens = get_flashed_messages(with_categories=true) %}
+
+                        <!-- Verifica se existem mensagens para mostrar. -->
+
+                        {% if mensagens %}
+
+                            <!-- Agrupa as mensagens para aplicar o CSS. -->
+<div class="mensagens">
+
+                                <!-- Percorre todas as mensagens recebidas. -->
+
+                                {% for categoria, mensagem in mensagens %}
+
+                                    <!-- Mostra a mensagem enviada pelo Python. -->
+<!-- A categoria pode ser error ou success. -->
+<p class="{{ categoria }}">
+
+                                        {{ mensagem }}
+</p>
+
+                                <!-- Termina a repetição das mensagens. -->
+
+                                {% endfor %}
+
+                            </div>
+
+                        <!-- Termina a verificação das mensagens. -->
+
+                        {% endif %}
+
+                    <!-- Termina o bloco de mensagens. -->
 
                     {% endwith %}
 
 
-                    <!-- =====================================
-                         BOTÃO DE LOGIN
-                         ===================================== -->
+                    <!-- ========================================== -->
+<!-- BOTÃO ENTRAR -->
+<!-- ========================================== -->
 
-                    <button type="submit" class="botao-login">
+                    <!-- button cria o botão de login. -->
+<!-- type=submit envia o e-mail e a senha para o Python. -->
+<!-- class controla o visual do botão no CSS. -->
+<button type="submit" class="botao-login">
+
+                        <!-- Texto que aparece dentro do botão. -->
+
                         ENTRAR NA MINHA CONTA
+
                     </button>
 
-
                 </form>
-
+<!-- Termina o formulário de login. -->
 
             </div>
+<!-- Termina o card de login. -->
 
 
-            <!-- =============================================
-                 CRIAR CONTA
-                 ============================================= -->
+            <!-- ========================================== -->
+<!-- CRIAR CONTA -->
+<!-- ========================================== -->
 
-            <div class="criar-conta">
+            <!-- Cria a parte para quem ainda não tem cadastro. -->
+<div class="criar-conta">
 
-                <p>
-                    Ainda não possui uma conta?
-                </p>
+                <!-- Mostra a pergunta na página. -->
+<p>Ainda não possui uma conta?</p>
 
-                <!--
-                    Leva o usuário para a página de cadastro.
-                -->
+                <!-- Abre a página de cadastro ao clicar. -->
+<!-- Se mudar pagina_cadastro, o nome deve existir no Python. -->
+<a href="{{ url_for('pagina_cadastro') }}">
 
-                <a href="{{ url_for('pagina_cadastro') }}">
                     Criar uma conta
-                </a>
+</a>
 
             </div>
 
 
-            <!-- =============================================
-                 AVISO DE SEGURANÇA
-                 ============================================= -->
+            <!-- ========================================== -->
+<!-- AVISO DE SEGURANÇA -->
+<!-- ========================================== -->
 
-            <div class="seguranca">
+            <!-- Agrupa o símbolo e o texto de segurança. -->
+<div class="seguranca">
 
-                <!-- Ícone de cadeado -->
-                <span class="cadeado">♙</span>
+                <!-- Mostra o símbolo usado no aviso. -->
+<span class="cadeado">♙</span>
 
-                <span>
+                <!-- Mostra o texto na parte inferior do login. -->
+<span>
+
                     Ambiente seguro com criptografia 256-bit
-                </span>
+</span>
 
             </div>
-
 
         </section>
-
+<!-- Termina a área do login. -->
 
     </main>
-
+<!-- Termina o conteúdo principal. -->
 
 </body>
+<!-- Termina o conteúdo da página. -->
 
 </html>
+<!-- Termina o arquivo HTML. -->
+

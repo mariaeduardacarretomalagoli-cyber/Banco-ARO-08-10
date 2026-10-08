@@ -1,76 +1,114 @@
 
 <!DOCTYPE html>
+<!-- Informa ao navegador que estamos usando HTML5. -->
+
 <html lang="pt-BR">
+<!-- Define o idioma da página como português brasileiro. -->
 
 <head>
-<!-- Define a codificação dos caracteres da página -->
+<!-- Guarda as configurações da página. -->
+
+    <!-- Permite mostrar acentos e caracteres corretamente. -->
 <meta charset="UTF-8">
 
-    <!-- Faz a página se adaptar a celulares e tablets -->
+    <!-- Adapta a página para celular e computador. -->
+<!-- initial-scale=1.0 começa com o tamanho normal da tela. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Título que aparece na aba do navegador -->
+    <!-- Nome que aparece na aba do navegador. -->
+<!-- Se mudar esse texto, muda o título da aba. -->
 <title>Criar conta</title>
 
-    <!-- Conecta o arquivo CSS externo -->
+    <!-- Conecta o HTML ao arquivo cadastro.css. -->
+<!-- Se o caminho estiver errado, a página fica sem o estilo do CSS. -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+
 </head>
 
 <body>
+<!-- Começa a parte que aparece na tela. -->
 
-    <!-- ==========================================
 
-         MENSAGENS DO FLASK
+    <!-- ========================================== -->
+<!-- MENSAGENS DO FLASK -->
+<!-- ========================================== -->
 
-         ========================================== -->
-
-    <!-- Mostra apenas mensagens de erro no cadastro -->
+    <!-- Busca mensagens enviadas pelo main.py usando flash(). -->
 
     {% with messages = get_flashed_messages(with_categories=true) %}
 
+        <!-- Confere se existe alguma mensagem. -->
+
         {% if messages %}
+
+            <!-- Percorre as mensagens recebidas. -->
 
             {% for category, message in messages %}
 
+                <!-- Mostra apenas mensagens de erro. -->
+
                 {% if category == "error" %}
 
-                    <div class="flash-messages">
+                    <!-- Agrupa as mensagens para aplicar o CSS. -->
+<div class="flash-messages">
+
+                        <!-- A classe flash controla o visual da mensagem. -->
+<!-- category adiciona a classe error quando é um erro. -->
 <div class="flash {{ category }}">
 
+                            <!-- Mostra o texto da mensagem enviado pelo Python. -->
+
                             {{ message }}
-</div>
-</div>
+
+                        </div>
+
+                    </div>
+
+                <!-- Termina a verificação do tipo de mensagem. -->
 
                 {% endif %}
 
+            <!-- Termina a repetição das mensagens. -->
+
             {% endfor %}
 
+        <!-- Termina a verificação das mensagens. -->
+
         {% endif %}
+
+    <!-- Termina o bloco de mensagens do Flask. -->
 
     {% endwith %}
 
 
-    <!-- ==========================================
+    <!-- ========================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ========================================== -->
 
-         CONTAINER PRINCIPAL
+    <!-- main indica a parte principal da página. -->
+<!-- A classe pagina controla seu tamanho e posição no CSS. -->
+<main class="pagina">
 
-         ========================================== -->
-
-    <main class="pagina">
-
-        <!-- Card do formulário -->
+        <!-- Cria a caixa que contém o cadastro. -->
+<!-- A classe card controla fundo, bordas e espaço no CSS. -->
 <section class="card">
 
-            <!-- Ícone de criação de usuário -->
+            <!-- Área do ícone de usuário. -->
 <div class="icone-conta">
-<span>👤</span>
-<strong>+</strong>
-</div>
 
-            <!-- Título principal -->
+                <!-- Mostra o símbolo do usuário. -->
+<span>👤</span>
+
+                <!-- Mostra o sinal de mais ao lado do usuário. -->
+<strong>+</strong>
+
+            </div>
+
+            <!-- Título principal da página. -->
+<!-- Se mudar o texto, muda o que aparece na tela. -->
 <h1>Criar conta</h1>
 
-            <!-- Texto de apresentação -->
+            <!-- Texto de explicação abaixo do título. -->
 <p class="descricao">
 
                 Preencha seus dados para calibrar sua
@@ -79,23 +117,38 @@
 </p>
 
 
-            <!-- ==========================================
+            <!-- ========================================== -->
+<!-- FORMULÁRIO DE CADASTRO -->
+<!-- ========================================== -->
 
-                 FORMULÁRIO
+            <!-- form cria o formulário que recebe os dados. -->
+<!-- action envia os dados para a função cadastro() do main.py. -->
+<!-- POST envia os dados ao servidor quando clicar em Cadastrar. -->
+<form action="{{ url_for('cadastro') }}" method="POST">
 
-                 ========================================== -->
-
-            <form action="{{ url_for('cadastro') }}" method="POST">
-
-                <!-- Tipo de usuário: empreendedor -->
+                <!-- Campo escondido que indica o tipo do usuário. -->
+<!-- O valor 7 representa empreendedor no projeto. -->
+<!-- O main.py também define esse valor no servidor. -->
 <input type="hidden" name="tipo_usuario" value="7">
 
-                <!-- Nome completo -->
+
+                <!-- ========================================== -->
+<!-- CAMPO NOME -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o título e a caixa de nome. -->
 <div class="campo">
 
-                    <label for="nome">Nome completo</label>
+                    <!-- Mostra o texto Nome completo acima da caixa. -->
+<!-- for="nome" conecta o texto ao campo com id="nome". -->
+<label for="nome">Nome completo</label>
 
-                    <input
+                    <!-- type=text permite digitar o nome. -->
+<!-- id identifica o campo na página. -->
+<!-- name=nome é o nome que o Python usa para receber o dado. -->
+<!-- placeholder mostra um exemplo antes de digitar. -->
+<!-- required impede enviar o formulário com o nome vazio. -->
+<input
 
                         type="text"
 
@@ -110,12 +163,22 @@
 
                 </div>
 
-                <!-- E-mail -->
+
+                <!-- ========================================== -->
+<!-- CAMPO E-MAIL -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o título e a caixa de e-mail. -->
 <div class="campo">
 
-                    <label for="email">E-mail corporativo ou pessoal</label>
+                    <!-- Mostra o texto acima da caixa. -->
+<label for="email">E-mail corporativo ou pessoal</label>
 
-                    <input
+                    <!-- type=email verifica o formato básico do e-mail. -->
+<!-- name=email precisa combinar com request.form["email"]. -->
+<!-- Se mudar o name sem mudar o Python, pode dar erro. -->
+<!-- required obriga preencher o campo. -->
+<input
 
                         type="email"
 
@@ -130,12 +193,24 @@
 
                 </div>
 
-                <!-- Senha -->
+
+                <!-- ========================================== -->
+<!-- CAMPO SENHA -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o título e a caixa de senha. -->
 <div class="campo">
 
-                    <label for="senha">Senha de acesso</label>
+                    <!-- Mostra o nome do campo. -->
+<label for="senha">Senha de acesso</label>
 
-                    <input
+                    <!-- type=password esconde os caracteres digitados na tela. -->
+<!-- Se trocar por text, a senha fica visível enquanto digita. -->
+<!-- name=senha envia o valor para o Python. -->
+<!-- minlength=8 exige pelo menos 8 caracteres no navegador. -->
+<!-- Se aumentar 8 para 10, vai exigir pelo menos 10. -->
+<!-- required obriga preencher a senha. -->
+<input
 
                         type="password"
 
@@ -152,24 +227,37 @@
 
                 </div>
 
-                <!-- Separador -->
+
+                <!-- Cria uma área de separação entre as partes. -->
+<!-- O CSS decide se será uma linha ou apenas espaço. -->
 <div class="separador"></div>
 
 
-                <!-- ==========================================
+                <!-- ========================================== -->
+<!-- DADOS FINANCEIROS -->
+<!-- ========================================== -->
 
-                     PARÂMETROS FINANCEIROS
+                <!-- Título da parte de renda e despesas. -->
+<h2>PARÂMETROS FINANCEIROS INICIAIS</h2>
 
-                     ========================================== -->
 
-                <h2>PARÂMETROS FINANCEIROS INICIAIS</h2>
+                <!-- ========================================== -->
+<!-- CAMPO RENDA MENSAL -->
+<!-- ========================================== -->
 
-                <!-- Renda mensal -->
+                <!-- Agrupa a caixa de renda mensal. -->
 <div class="campo">
 
-                    <label for="renda">Renda mensal líquida</label>
+                    <!-- Texto que aparece acima da caixa. -->
+<label for="renda">Renda mensal líquida</label>
 
-                    <input
+                    <!-- type=number permite informar números. -->
+<!-- name=renda_mensal envia o valor para o main.py. -->
+<!-- min=0 não permite valores negativos no formulário. -->
+<!-- step=0.01 permite informar centavos, como 1500.50. -->
+<!-- Se mudar step para 1, só aceita passos inteiros. -->
+<!-- required obriga preencher esse campo. -->
+<input
 
                         type="number"
 
@@ -188,12 +276,23 @@
 
                 </div>
 
-                <!-- Despesas mensais -->
+
+                <!-- ========================================== -->
+<!-- CAMPO DESPESAS MENSAIS -->
+<!-- ========================================== -->
+
+                <!-- Agrupa a caixa de despesas. -->
 <div class="campo">
 
-                    <label for="despesas">Despesas fixas mês</label>
+                    <!-- Texto que aparece acima da caixa. -->
+<label for="despesas">Despesas fixas mês</label>
 
-                    <input
+                    <!-- type=number permite informar números. -->
+<!-- name=despesas_mensal precisa ser igual ao do main.py. -->
+<!-- min=0 impede valores negativos pelo formulário. -->
+<!-- step=0.01 permite valores com centavos. -->
+<!-- required obriga preencher as despesas. -->
+<input
 
                         type="number"
 
@@ -213,15 +312,15 @@
                 </div>
 
 
-                <!-- ==========================================
+                <!-- ========================================== -->
+<!-- AVISO DE SEGURANÇA -->
+<!-- ========================================== -->
 
-                     AVISO DE SEGURANÇA
+                <!-- Cria a área do texto sobre proteção de dados. -->
+<div class="aviso-seguranca">
 
-                     ========================================== -->
-
-                <div class="aviso-seguranca">
-
-                    <p>
+                    <!-- Mostra o aviso escrito na página. -->
+<p>
 
                         Seus dados estão protegidos de acordo
 
@@ -235,54 +334,67 @@
                 </div>
 
 
-                <!-- Botão de cadastro -->
+                <!-- ========================================== -->
+<!-- BOTÃO DE CADASTRO -->
+<!-- ========================================== -->
+
+                <!-- button cria um botão. -->
+<!-- type=submit envia os dados do formulário ao Python. -->
+<!-- class permite mudar o visual do botão pelo CSS. -->
 <button type="submit" class="botao-cadastrar">
 
+                    <!-- Texto que aparece no botão. -->
+
                     Cadastrar
-</button>
+
+                </button>
 
 
-                <!-- ==========================================
+                <!-- ========================================== -->
+<!-- LINK PARA LOGIN -->
+<!-- ========================================== -->
 
-                     LINK PARA LOGIN
+                <!-- Agrupa a pergunta e o link de login. -->
+<p class="texto-login">
 
-                     ========================================== -->
-
-                <p class="texto-login">
+                    <!-- Texto para quem já possui conta. -->
 
                     Já tem uma conta?
+
+                    <!-- Abre a página de login ao clicar em Entrar. -->
+<!-- Se mudar o nome da função, precisa mudar no Python também. -->
 <a href="{{ url_for('login') }}">Entrar</a>
-</p>
+
+                </p>
 
             </form>
+<!-- Termina o formulário de cadastro. -->
 
         </section>
+<!-- Termina o card principal. -->
 
 
-        <!-- ==========================================
+        <!-- ========================================== -->
+<!-- RODAPÉ -->
+<!-- ========================================== -->
 
-             RODAPÉ
+        <!-- footer cria a área inferior da página. -->
+<footer>
 
-             ========================================== -->
+            <!-- Primeiro texto do rodapé. -->
+<span>Criptografia ponta a ponta</span>
 
-        <footer>
-
-            <span>
-
-                Criptografia ponta a
-
-                ponta
-</span>
-
-            <span>
-
-                Banco Central do Brasil
-</span>
+            <!-- Segundo texto do rodapé. -->
+<span>Banco Central do Brasil</span>
 
         </footer>
 
     </main>
+<!-- Termina o conteúdo principal. -->
 
 </body>
+<!-- Termina a parte visível da página. -->
+
 </html>
+<!-- Termina o documento HTML. -->
 

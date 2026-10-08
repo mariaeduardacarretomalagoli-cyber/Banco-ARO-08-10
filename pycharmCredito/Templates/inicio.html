@@ -1,47 +1,140 @@
 
 <!DOCTYPE html>
+<!-- Informa ao navegador que estamos usando HTML5. -->
+
 <html lang="pt-BR">
+<!-- Define o idioma da página como português brasileiro. -->
 
 <head>
+<!-- Guarda as configurações da página. -->
+
+    <!-- Permite mostrar acentos e caracteres especiais corretamente. -->
 <meta charset="UTF-8">
+
+    <!-- Adapta a página ao tamanho da tela do celular ou computador. -->
+<!-- initial-scale=1.0 mantém o tamanho normal da página. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Nome que aparece na aba do navegador. -->
+<!-- Se mudar o texto, muda o nome da aba. -->
 <title>Início - ARO</title>
+
+    <!-- Conecta o HTML ao arquivo inicio.css. -->
+<!-- Se o caminho estiver errado, a página perde o estilo. -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+
 </head>
 
 <body>
+<!-- Começa o conteúdo que aparece na tela. -->
 
-    <header>
 
-        <h2>ARO</h2>
+    <!-- ========================================== -->
+<!-- CABEÇALHO DA PÁGINA -->
+<!-- ========================================== -->
 
-        <nav>
+    <!-- header cria a parte superior do site. -->
+<!-- Aqui ficam o nome ARO, o menu e os dados do usuário. -->
+<header>
+
+        <!-- Mostra o nome do projeto no cabeçalho. -->
+<!-- h2 cria um título que pode ter o tamanho alterado no CSS. -->
+<h2>ARO</h2>
+
+
+        <!-- ========================================== -->
+<!-- MENU DE NAVEGAÇÃO -->
+<!-- ========================================== -->
+
+        <!-- nav agrupa os links para outras páginas. -->
+<nav>
+
+            <!-- Abre a página inicial do usuário. -->
+<!-- url_for("novo") procura a função novo() no main.py. -->
 <a href="{{ url_for('novo') }}">Início</a>
-<a href="#">Empréstimos</a>
-<a href="#">Novo empréstimo</a>
-<a href="#">Movimento</a>
-</nav>
 
-        <!-- Nome do usuário logado -->
+            <!-- Link de empréstimos. -->
+<!-- href="#" ainda não leva para outra página. -->
+<a href="#">Empréstimos</a>
+
+            <!-- Link para novos empréstimos. -->
+<!-- Precisa de uma rota para abrir outra página. -->
+<a href="#">Novo empréstimo</a>
+
+            <!-- Link de movimentações financeiras. -->
+<!-- Também está sem endereço definido. -->
+<a href="#">Movimento</a>
+
+        </nav>
+<!-- Termina o menu de navegação. -->
+
+
+        <!-- ========================================== -->
+<!-- NOME DO USUÁRIO -->
+<!-- ========================================== -->
+
+        <!-- Mostra o nome de quem fez login. -->
+<!-- {{ usuario }} recebe o nome enviado pela função novo() do Python. -->
+<!-- Se retirar essa variável, o nome não aparece. -->
 <span>{{ usuario }}</span>
 
-        <!-- Editar perfil -->
-<a href="{{ url_for('editar_usuario') }}">Editar perfil</a>
 
-        <!-- Sair da conta -->
+        <!-- ========================================== -->
+<!-- EDITAR PERFIL -->
+<!-- ========================================== -->
+
+        <!-- Abre a página onde o usuário pode editar seus dados. -->
+<!-- Se mudar editar_usuario, precisa existir uma função com esse nome. -->
+<a href="{{ url_for('editar_usuario') }}">
+
+            Editar perfil
+</a>
+
+
+        <!-- ========================================== -->
+<!-- BOTÃO SAIR -->
+<!-- ========================================== -->
+
+        <!-- Cria o formulário para encerrar a sessão. -->
+<!-- POST envia a solicitação de saída para o Python. -->
+<!-- url_for("logout") chama a rota que encerra a sessão. -->
 <form action="{{ url_for('logout') }}" method="POST">
-<button type="submit">Sair</button>
-</form>
+
+            <!-- Cria o botão para sair da conta. -->
+<!-- type=submit envia o formulário ao clicar. -->
+<button type="submit">
+
+                Sair
+</button>
+
+        </form>
+<!-- Termina o formulário de logout. -->
 
     </header>
+<!-- Termina o cabeçalho da página. -->
 
-    <main>
 
-        <!-- Mensagem de boas-vindas -->
-<h2>Bem-vindo, {{ usuario }}!</h2>
+    <!-- ========================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ========================================== -->
+
+    <!-- main representa a área principal da página. -->
+<main>
+
+        <!-- Mostra uma mensagem de boas-vindas. -->
+<!-- O nome muda de acordo com quem estiver logado. -->
+<h2>
+
+            Bem-vindo, {{ usuario }}!
+</h2>
 
     </main>
+<!-- Termina a área principal. -->
+
 
 </body>
+<!-- Termina o conteúdo visível da página. -->
+
 </html>
+<!-- Termina o arquivo HTML. -->
 

@@ -1,102 +1,302 @@
 
 <!DOCTYPE html>
+<!-- Informa ao navegador que estamos usando HTML5. -->
+
 <html lang="pt-BR">
+<!-- Define o idioma como português brasileiro. -->
 
 <head>
+<!-- Guarda as configurações da página. -->
+
+    <!-- Permite mostrar letras com acentos corretamente. -->
 <meta charset="UTF-8">
+
+    <!-- Faz a página se adaptar ao celular e ao computador. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Editar usuário - ARO</title>
+
+    <!-- Nome que aparece na aba do navegador. -->
+<!-- Se mudar o texto, muda o título da aba. -->
+<title>Editar Perfil - ARO</title>
+
+    <!-- Conecta o HTML ao arquivo CSS. -->
+<!-- Se o caminho estiver errado, a página fica sem esse estilo. -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/editar_usuario.css') }}">
+
 </head>
 
 <body>
+<!-- Começa o conteúdo que aparece na tela. -->
 
-    <header>
-<h2>ARO</h2>
 
-        <nav>
-<a href="{{ url_for('novo') }}">Início</a>
-<a href="#">Empréstimos</a>
-<a href="#">Novo empréstimo</a>
-<a href="#">Movimento</a>
-</nav>
+    <!-- ========================================== -->
+<!-- CONTEÚDO PRINCIPAL -->
+<!-- ========================================== -->
 
-        <span>{{ session["nome_usuario"] }}</span>
-</header>
+    <!-- main indica a parte principal da página. -->
+<!-- A classe container permite controlar seu visual no CSS. -->
+<main class="container">
 
-    <main>
+        <!-- Cria a caixa onde ficam os dados do usuário. -->
+<!-- A classe card permite definir cor, tamanho e espaçamento. -->
+<section class="card">
 
-        <h2>Editar usuário</h2>
+            <!-- Mostra o título principal da página. -->
+<h1>Editar Perfil</h1>
 
-        <!-- Mensagens do Flask -->
+            <!-- Explica para que serve essa página. -->
+<p>Atualize suas informações pessoais e financeiras.</p>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
 
-            {% if messages %}
+            <!-- ========================================== -->
+<!-- MENSAGENS DO FLASK -->
+<!-- ========================================== -->
 
-                {% for category, message in messages %}
-<p>{{ message }}</p>
+            <!-- Busca as mensagens enviadas pelo main.py. -->
 
-                {% endfor %}
+            {% with mensagens = get_flashed_messages(with_categories=true) %}
 
-            {% endif %}
+                <!-- Verifica se existe alguma mensagem. -->
 
-        {% endwith %}
+                {% if mensagens %}
 
-        <form action="{{ url_for('salvar_edicao') }}" method="POST">
+                    <!-- Agrupa os avisos para aplicar o CSS. -->
+<div class="mensagens">
 
-            <!-- Chave primária: não pode ser alterada -->
-<label>ID do usuário</label>
-<input type="text" value="{{ usuario[0] }}" disabled>
+                        <!-- Percorre as mensagens encontradas. -->
 
-            <br><br>
+                        {% for categoria, mensagem in mensagens %}
 
-            <!-- Nome -->
-<label>Nome completo</label>
-<input type="text" name="nome" value="{{ usuario[1] }}" required>
+                            <!-- Mostra o texto da mensagem. -->
+<!-- A categoria indica se é erro ou sucesso. -->
+<p class="{{ categoria }}">
 
-            <br><br>
+                                {{ mensagem }}
+</p>
 
-            <!-- E-mail -->
-<label>E-mail</label>
-<input type="email" name="email" value="{{ usuario[2] }}" required>
+                        <!-- Termina a repetição de mensagens. -->
 
-            <br><br>
+                        {% endfor %}
 
-            <!-- Senha -->
-<label>Nova senha</label>
-<input type="password" name="senha"
+                    </div>
 
-                   placeholder="Deixe vazio para manter a senha atual">
+                <!-- Termina a verificação das mensagens. -->
 
-            <br><br>
+                {% endif %}
 
-            <!-- Renda mensal -->
-<label>Renda mensal</label>
-<input type="text" name="renda_mensal" value="{{ usuario[3] }}" required>
+            <!-- Termina o bloco de mensagens do Flask. -->
 
-            <br><br>
+            {% endwith %}
 
-            <!-- Despesas mensais -->
-<label>Despesas mensais</label>
-<input type="text" name="despesas_mensal" value="{{ usuario[4] }}" required>
 
-            <br><br>
+            <!-- ========================================== -->
+<!-- FORMULÁRIO DE EDIÇÃO -->
+<!-- ========================================== -->
 
-            <!-- Tipo de usuário -->
-<label>Tipo de usuário</label>
-<input type="text" value="{{ usuario[5] }}" disabled>
+            <!-- form cria o formulário. -->
+<!-- action indica qual função do main.py recebe os dados. -->
+<!-- POST envia os dados ao clicar no botão de salvar. -->
+<form action="{{ url_for('salvar_edicao') }}" method="POST">
 
-            <br><br>
 
-            <button type="submit">Salvar alterações</button>
+                <!-- ========================================== -->
+<!-- CAMPO NOME -->
+<!-- ========================================== -->
 
-            <a href="{{ url_for('novo') }}">Cancelar</a>
+                <!-- Agrupa o nome do campo e a caixa de texto. -->
+<div class="campo">
 
-        </form>
+                    <!-- Mostra o texto Nome completo. -->
+<!-- for conecta o texto ao campo que possui o mesmo id. -->
+<label for="nome">Nome completo</label>
+
+                    <!-- type=text permite digitar o nome. -->
+<!-- name=nome é usado pelo Python para receber o valor. -->
+<!-- value mostra o nome que já está salvo no banco. -->
+<!-- usuario[1] representa o nome retornado pela consulta. -->
+<!-- required obriga preencher o campo. -->
+<input
+
+                        type="text"
+
+                        id="nome"
+
+                        name="nome"
+
+                        value="{{ usuario[1] }}"
+
+                        required
+>
+
+                </div>
+
+
+                <!-- ========================================== -->
+<!-- CAMPO E-MAIL -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o texto e a caixa de e-mail. -->
+<div class="campo">
+
+                    <!-- Mostra o título do campo. -->
+<label for="email">E-mail</label>
+
+                    <!-- type=email verifica o formato básico do e-mail. -->
+<!-- name=email precisa combinar com o main.py. -->
+<!-- usuario[2] mostra o e-mail salvo no banco. -->
+<!-- required obriga preencher o e-mail. -->
+<input
+
+                        type="email"
+
+                        id="email"
+
+                        name="email"
+
+                        value="{{ usuario[2] }}"
+
+                        required
+>
+
+                </div>
+
+
+                <!-- ========================================== -->
+<!-- CAMPO SENHA -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o campo usado para trocar a senha. -->
+<div class="campo">
+
+                    <!-- Mostra o título do campo. -->
+<label for="senha">Nova senha</label>
+
+                    <!-- type=password esconde o que é digitado. -->
+<!-- Se mudar para text, a senha ficará visível. -->
+<!-- name=senha permite que o Python receba a nova senha. -->
+<!-- placeholder mostra uma orientação dentro do campo. -->
+<!-- Não usamos required porque trocar a senha é opcional. -->
+<input
+
+                        type="password"
+
+                        id="senha"
+
+                        name="senha"
+
+                        placeholder="Deixe vazio para manter a senha atual"
+>
+
+                </div>
+
+
+                <!-- ========================================== -->
+<!-- CAMPO RENDA MENSAL -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o campo de renda mensal. -->
+<div class="campo">
+
+                    <!-- Mostra o texto acima da caixa. -->
+<label for="renda">Renda mensal</label>
+
+                    <!-- type=number permite digitar números. -->
+<!-- name=renda_mensal envia o valor ao Python. -->
+<!-- usuario[3] mostra a renda salva no banco. -->
+<!-- min=0 impede valores negativos no formulário. -->
+<!-- step=0.01 permite valores com centavos. -->
+<!-- Se mudar step para 1, aceita apenas passos inteiros. -->
+<input
+
+                        type="number"
+
+                        id="renda"
+
+                        name="renda_mensal"
+
+                        value="{{ usuario[3] }}"
+
+                        min="0"
+
+                        step="0.01"
+
+                        required
+>
+
+                </div>
+
+
+                <!-- ========================================== -->
+<!-- CAMPO DESPESAS MENSAIS -->
+<!-- ========================================== -->
+
+                <!-- Agrupa o campo de despesas mensais. -->
+<div class="campo">
+
+                    <!-- Mostra o texto acima da caixa. -->
+<label for="despesas">Despesas mensais</label>
+
+                    <!-- type=number permite informar números. -->
+<!-- name=despesas_mensal precisa ser igual ao do Python. -->
+<!-- usuario[4] mostra as despesas salvas no banco. -->
+<!-- min=0 não permite valores negativos no formulário. -->
+<!-- step=0.01 permite informar centavos. -->
+<!-- required obriga preencher esse campo. -->
+<input
+
+                        type="number"
+
+                        id="despesas"
+
+                        name="despesas_mensal"
+
+                        value="{{ usuario[4] }}"
+
+                        min="0"
+
+                        step="0.01"
+
+                        required
+>
+
+                </div>
+
+
+                <!-- ========================================== -->
+<!-- BOTÃO SALVAR -->
+<!-- ========================================== -->
+
+                <!-- button cria o botão. -->
+<!-- type=submit envia o formulário ao main.py. -->
+<!-- A classe botao-salvar controla a aparência no CSS. -->
+<button type="submit" class="botao-salvar">
+
+                    Salvar alterações
+</button>
+
+            </form>
+<!-- Termina o formulário de edição. -->
+
+
+            <!-- ========================================== -->
+<!-- BOTÃO VOLTAR -->
+<!-- ========================================== -->
+
+            <!-- Abre a página inicial do usuário. -->
+<!-- url_for procura a função novo() no main.py. -->
+<a href="{{ url_for('novo') }}" class="botao-voltar">
+
+                Voltar
+</a>
+
+        </section>
+<!-- Termina a caixa principal. -->
 
     </main>
+<!-- Termina o conteúdo principal. -->
 
 </body>
+<!-- Termina o conteúdo visível. -->
+
 </html>
+<!-- Termina o documento HTML. -->
 

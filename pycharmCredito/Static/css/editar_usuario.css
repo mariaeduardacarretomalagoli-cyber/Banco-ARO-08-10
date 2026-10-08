@@ -8,21 +8,42 @@
 
 * {
 
+    /* Remove os espaços externos automáticos. */
+
     margin: 0;
 
+    /* Remove os espaços internos automáticos. */
+
     padding: 0;
+
+    /* Faz o padding e as bordas entrarem no tamanho do elemento. */
 
     box-sizing: border-box;
 
 }
 
+
+/* ==========================================
+
+   CORPO DA PÁGINA
+
+   ========================================== */
+
 body {
+
+    /* Define a fonte dos textos. Se trocar, muda o formato das letras. */
 
     font-family: Arial, sans-serif;
 
+    /* Define a cor clara do fundo da página. */
+
     background-color: #F6F3F2;
 
+    /* Define a cor padrão dos textos. */
+
     color: #25232A;
+
+    /* Faz a página ocupar pelo menos toda a altura da tela. */
 
     min-height: 100vh;
 
@@ -31,96 +52,142 @@ body {
 
 /* ==========================================
 
-   CABEÇALHO
+   CONTAINER PRINCIPAL
 
    ========================================== */
 
-header {
+.container {
 
-    background-color: white;
+    /* Faz o conteúdo ocupar a largura disponível. */
 
-    padding: 25px 50px;
+    width: 100%;
+
+    /* Define a altura mínima da área principal. */
+
+    min-height: 100vh;
+
+    /* Organiza os elementos usando Flexbox. */
 
     display: flex;
+
+    /* Centraliza o card na horizontal. */
 
     align-items: center;
 
-    justify-content: space-between;
+    /* Centraliza o card na vertical. */
 
-    gap: 20px;
+    justify-content: center;
 
-}
+    /* Cria espaço entre o card e as bordas da tela. */
 
-header h2 {
+    /* Se aumentar, o card fica mais afastado das bordas. */
 
-    color: #5B3A8E;
-
-    font-size: 28px;
-
-}
-
-nav {
-
-    display: flex;
-
-    gap: 25px;
-
-}
-
-nav a {
-
-    text-decoration: none;
-
-    color: #5B3A8E;
-
-    font-size: 15px;
-
-}
-
-nav a:hover {
-
-    text-decoration: underline;
-
-}
-
-header span {
-
-    color: #5B3A8E;
-
-    font-weight: bold;
+    padding: 40px 20px;
 
 }
 
 
 /* ==========================================
 
-   CONTEÚDO PRINCIPAL
+   CARD DE EDITAR PERFIL
 
    ========================================== */
 
-main {
+.card {
 
-    background-color: white;
+    /* Faz o card ocupar a largura disponível. */
 
-    max-width: 550px;
+    width: 100%;
 
-    margin: 60px auto;
+    /* Limita a largura do card a 600px. */
 
-    padding: 35px;
+    /* Se aumentar, o formulário pode ficar mais largo. */
 
-    border-radius: 12px;
+    max-width: 600px;
+
+    /* Define a cor branca do card. */
+
+    background-color: #FFFFFF;
+
+    /* Cria espaço entre os campos e as bordas internas. */
+
+    /* Se aumentar, o conteúdo fica mais afastado das bordas. */
+
+    padding: 40px;
+
+    /* Arredonda os cantos do card. */
+
+    /* Quanto maior, mais arredondados ficam. */
+
+    border-radius: 16px;
+
+    /* Cria uma sombra suave atrás do card. */
+
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.06);
 
 }
 
-main h2 {
+
+/* ==========================================
+
+   TÍTULO EDITAR PERFIL
+
+   ========================================== */
+
+.card h1 {
+
+    /* Define a cor roxa do título. */
 
     color: #5B3A8E;
 
-    font-size: 24px;
+    /* Define o tamanho das letras. */
 
-    margin-bottom: 25px;
+    /* Se aumentar, o título fica maior. */
+
+    font-size: 28px;
+
+    /* Deixa o título em negrito. */
+
+    font-weight: 700;
+
+    /* Centraliza o título. */
 
     text-align: center;
+
+    /* Cria espaço abaixo do título. */
+
+    margin-bottom: 12px;
+
+}
+
+
+/* ==========================================
+
+   DESCRIÇÃO DA PÁGINA
+
+   ========================================== */
+
+.card > p {
+
+    /* Centraliza a descrição. */
+
+    text-align: center;
+
+    /* Define a cor cinza do texto. */
+
+    color: #77727F;
+
+    /* Define o tamanho das letras. */
+
+    font-size: 14px;
+
+    /* Controla a distância entre as linhas. */
+
+    line-height: 1.5;
+
+    /* Cria espaço entre a descrição e o formulário. */
+
+    margin-bottom: 30px;
 
 }
 
@@ -133,53 +200,185 @@ main h2 {
 
 form {
 
+    /* Faz o formulário ocupar toda a largura do card. */
+
+    width: 100%;
+
+    /* Organiza os campos usando Flexbox. */
+
     display: flex;
+
+    /* Coloca os campos um abaixo do outro. */
 
     flex-direction: column;
 
 }
 
-label {
 
-    font-size: 14px;
+/* ==========================================
 
-    font-weight: bold;
+   CAMPOS DO FORMULÁRIO
 
-    margin-bottom: 8px;
+   ========================================== */
 
-    color: #25232A;
+.campo {
 
-}
-
-input {
+    /* Faz cada grupo de campo ocupar toda a largura. */
 
     width: 100%;
 
-    padding: 12px;
+    /* Cria distância entre um campo e o próximo. */
+
+    /* Se aumentar, os campos ficam mais separados. */
+
+    margin-bottom: 20px;
+
+}
+
+
+/* ==========================================
+
+   NOME DOS CAMPOS
+
+   ========================================== */
+
+.campo label {
+
+    /* Faz o nome aparecer acima da caixa de digitação. */
+
+    display: block;
+
+    /* Define a cor escura do nome do campo. */
+
+    color: #25232A;
+
+    /* Define o tamanho das letras. */
+
+    font-size: 14px;
+
+    /* Deixa o nome do campo em negrito. */
+
+    font-weight: 700;
+
+    /* Cria espaço entre o nome e a caixa de digitação. */
+
+    margin-bottom: 9px;
+
+}
+
+
+/* ==========================================
+
+   CAIXAS DE DIGITAÇÃO
+
+   ========================================== */
+
+.campo input {
+
+    /* Faz a caixa ocupar toda a largura disponível. */
+
+    width: 100%;
+
+    /* Define a altura das caixas. */
+
+    /* Se aumentar, os campos ficam mais altos. */
+
+    height: 48px;
+
+    /* Cria uma borda cinza de 1px. */
+
+    /* Se aumentar 1px, a borda fica mais grossa. */
 
     border: 1px solid #DDD9E3;
 
-    border-radius: 6px;
+    /* Arredonda os cantos da caixa. */
+
+    border-radius: 8px;
+
+    /* Define a cor clara do fundo dos campos. */
+
+    background-color: #F7F7FA;
+
+    /* Cria espaço entre o texto e as laterais da caixa. */
+
+    /* Se aumentar, o texto começa mais longe das bordas. */
+
+    padding: 0 15px;
+
+    /* Define o tamanho das letras digitadas. */
 
     font-size: 15px;
 
-    margin-bottom: 5px;
+    /* Define a cor do texto digitado. */
 
-}
+    color: #25232A;
 
-input:focus {
+    /* Remove o contorno padrão ao clicar no campo. */
 
     outline: none;
 
-    border-color: #5B3A8E;
+    /* Faz as mudanças visuais acontecerem suavemente. */
+
+    transition: 0.2s ease;
 
 }
 
-input:disabled {
 
-    background-color: #F6F3F2;
+/* ==========================================
+
+   TEXTO DE EXEMPLO
+
+   ========================================== */
+
+.campo input::placeholder {
+
+    /* Define a cor cinza do texto de exemplo. */
+
+    color: #99939D;
+
+    /* Mantém o texto de exemplo totalmente visível. */
+
+    opacity: 1;
+
+}
+
+
+/* ==========================================
+
+   CAMPO SELECIONADO
+
+   ========================================== */
+
+.campo input:focus {
+
+    /* Muda a borda para roxo quando o usuário clica no campo. */
+
+    border-color: #5B3A8E;
+
+    /* Cria um contorno roxo claro ao redor do campo. */
+
+    outline: 1px solid #5B3A8E;
+
+}
+
+
+/* ==========================================
+
+   CAMPO DESATIVADO
+
+   ========================================== */
+
+.campo input:disabled {
+
+    /* Define um fundo cinza para campos desativados. */
+
+    background-color: #EAE8ED;
+
+    /* Deixa o texto do campo desativado cinza. */
 
     color: #77727F;
+
+    /* Mostra o cursor de bloqueio ao passar o mouse. */
 
     cursor: not-allowed;
 
@@ -188,33 +387,154 @@ input:disabled {
 
 /* ==========================================
 
-   BOTÃO SALVAR
+   MENSAGENS DO FLASK
 
    ========================================== */
 
-button {
+.mensagens {
 
-    background-color: #5B3A8E;
+    /* Cria espaço abaixo das mensagens. */
 
-    color: white;
-
-    padding: 14px;
-
-    border: none;
-
-    border-radius: 6px;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    margin-top: 15px;
+    margin-bottom: 20px;
 
 }
 
-button:hover {
+
+/* ==========================================
+
+   TEXTO DAS MENSAGENS
+
+   ========================================== */
+
+.mensagens p {
+
+    /* Cria espaço dentro das caixas de aviso. */
+
+    padding: 12px;
+
+    /* Arredonda os cantos dos avisos. */
+
+    border-radius: 8px;
+
+    /* Define o tamanho das letras dos avisos. */
+
+    font-size: 13px;
+
+    /* Centraliza o texto. */
+
+    text-align: center;
+
+    /* Cria distância entre mensagens diferentes. */
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ==========================================
+
+   MENSAGEM DE ERRO
+
+   ========================================== */
+
+.mensagens .error {
+
+    /* Define a cor vermelha do texto. */
+
+    color: #B33A3A;
+
+    /* Define o fundo vermelho claro. */
+
+    background-color: #FFF0F0;
+
+}
+
+
+/* ==========================================
+
+   MENSAGEM DE SUCESSO
+
+   ========================================== */
+
+.mensagens .success {
+
+    /* Define a cor verde do texto. */
+
+    color: #00683F;
+
+    /* Define o fundo verde claro. */
+
+    background-color: #EAF7EF;
+
+}
+
+
+/* ==========================================
+
+   BOTÃO SALVAR ALTERAÇÕES
+
+   ========================================== */
+
+.botao-salvar {
+
+    /* Faz o botão ocupar toda a largura do formulário. */
+
+    width: 100%;
+
+    /* Define a altura do botão. */
+
+    /* Se aumentar, o botão fica mais alto. */
+
+    height: 50px;
+
+    /* Define a cor roxa do botão. */
+
+    background-color: #5B3A8E;
+
+    /* Define a cor branca do texto. */
+
+    color: #FFFFFF;
+
+    /* Remove a borda padrão do navegador. */
+
+    border: none;
+
+    /* Arredonda os cantos do botão. */
+
+    border-radius: 8px;
+
+    /* Define o tamanho das letras. */
+
+    font-size: 15px;
+
+    /* Deixa o texto em negrito. */
+
+    font-weight: 700;
+
+    /* Mostra a mãozinha ao passar o mouse sobre o botão. */
+
+    cursor: pointer;
+
+    /* Cria distância entre os campos e o botão. */
+
+    margin-top: 10px;
+
+    /* Faz a mudança de cor acontecer suavemente. */
+
+    transition: 0.2s ease;
+
+}
+
+
+/* ==========================================
+
+   MOUSE SOBRE O BOTÃO SALVAR
+
+   ========================================== */
+
+.botao-salvar:hover {
+
+    /* Escurece o roxo quando passa o mouse. */
 
     background-color: #472B70;
 
@@ -223,25 +543,48 @@ button:hover {
 
 /* ==========================================
 
-   LINK CANCELAR
+   LINK VOLTAR
 
    ========================================== */
 
-form a {
+.botao-voltar {
 
-    color: #5B3A8E;
+    /* Faz o link ocupar uma linha própria. */
+
+    display: block;
+
+    /* Centraliza o texto Voltar. */
 
     text-align: center;
 
-    text-decoration: none;
+    /* Define a cor roxa do link. */
 
-    margin-top: 15px;
+    color: #5B3A8E;
+
+    /* Define o tamanho das letras. */
 
     font-size: 14px;
 
+    /* Remove o sublinhado do link. */
+
+    text-decoration: none;
+
+    /* Cria espaço acima do link. */
+
+    margin-top: 20px;
+
 }
 
-form a:hover {
+
+/* ==========================================
+
+   MOUSE SOBRE O LINK VOLTAR
+
+   ========================================== */
+
+.botao-voltar:hover {
+
+    /* Coloca uma linha embaixo de Voltar quando passa o mouse. */
 
     text-decoration: underline;
 
@@ -250,64 +593,136 @@ form a:hover {
 
 /* ==========================================
 
-   MENSAGENS
+   RESPONSIVIDADE PARA TABLETS
 
    ========================================== */
 
-main p {
+/* Estas regras funcionam quando a tela tem 768px ou menos. */
 
-    background-color: #F6F3F2;
+@media (max-width: 768px) {
 
-    padding: 12px;
+    .container {
 
-    border-radius: 6px;
+        /* Reduz o espaço entre o card e as bordas da tela. */
 
-    margin-bottom: 15px;
+        padding: 25px 15px;
 
-    text-align: center;
+    }
+
+    .card {
+
+        /* Diminui o espaço interno do card. */
+
+        padding: 30px 25px;
+
+    }
+
+    .card h1 {
+
+        /* Diminui o título para caber melhor. */
+
+        font-size: 25px;
+
+    }
 
 }
 
 
 /* ==========================================
 
-   RESPONSIVIDADE
+   RESPONSIVIDADE PARA CELULARES
 
    ========================================== */
 
-@media (max-width: 768px) {
+/* Estas regras funcionam quando a tela tem 500px ou menos. */
 
-    header {
+@media (max-width: 500px) {
 
-        padding: 20px;
+    .container {
 
-        flex-direction: column;
+        /* Coloca o card mais próximo do topo. */
 
-        text-align: center;
+        align-items: flex-start;
 
-    }
+        /* Reduz o espaço nas bordas da tela. */
 
-    nav {
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-
-        gap: 15px;
+        padding: 20px 12px;
 
     }
 
-    main {
+    .card {
 
-        margin: 25px 15px;
+        /* Reduz o espaço entre o conteúdo e as bordas do card. */
 
-        padding: 25px 20px;
+        padding: 25px 18px;
+
+        /* Diminui o arredondamento dos cantos. */
+
+        border-radius: 12px;
 
     }
 
-    main h2 {
+    .card h1 {
 
-        font-size: 21px;
+        /* Diminui um pouco o título no celular. */
+
+        font-size: 23px;
+
+    }
+
+    .card > p {
+
+        /* Ajusta a descrição para telas menores. */
+
+        font-size: 13px;
+
+    }
+
+    .campo {
+
+        /* Diminui a distância entre os campos. */
+
+        margin-bottom: 17px;
+
+    }
+
+    .campo label {
+
+        /* Mantém os nomes dos campos legíveis. */
+
+        font-size: 13px;
+
+    }
+
+    .campo input {
+
+        /* Mantém os campos grandes para facilitar o toque. */
+
+        height: 46px;
+
+        /* Ajusta o tamanho do texto digitado. */
+
+        font-size: 14px;
+
+    }
+
+    .botao-salvar {
+
+        /* Mantém o botão grande no celular. */
+
+        height: 48px;
+
+        /* Ajusta o tamanho das letras do botão. */
+
+        font-size: 14px;
+
+    }
+
+    .botao-voltar {
+
+        /* Ajusta o tamanho do link Voltar. */
+
+        font-size: 13px;
 
     }
 
