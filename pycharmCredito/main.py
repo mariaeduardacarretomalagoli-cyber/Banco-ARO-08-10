@@ -1,21 +1,27 @@
 
 # Importa as ferramentas do Flask para criar páginas, receber dados e controlar o login.
+
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 
 # Permite conectar o Python ao banco de dados Firebird.
+
 import fdb
 
 # Importa o Bcrypt, usado para proteger e verificar as senhas.
+
 from flask_bcrypt import Bcrypt
 
 
 # Cria o aplicativo Flask, que controla o funcionamento do site.
+
 app = Flask(__name__)
 
 # Liga o Bcrypt ao Flask para trabalhar com as senhas.
+
 bcrypt = Bcrypt(app)
 
 # Chave que protege os dados da sessão. Se mudar, sessões antigas deixam de funcionar.
+
 app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 
 
@@ -26,18 +32,23 @@ app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 # ==========================================
 
 # Endereço do servidor. localhost significa que está no próprio computador.
+
 host = "localhost"
 
 # Caminho do banco. Se mover o arquivo, precisa atualizar esse caminho.
+
 database = r"C:\Users\Aluno\Downloads\BANCO.FDB"
 
 # Nome do usuário utilizado para entrar no Firebird.
+
 user = "sysdba"
 
 # Senha utilizada para conectar ao Firebird.
+
 password = "sysdba"
 
 # Cria a conexão com o banco utilizando os dados acima.
+
 con = fdb.connect(
 
     host=host,             # Indica onde está o servidor.
@@ -535,6 +546,9 @@ def cadastro():
 def login():
 
     # Abre o login.html, onde o usuário digita e-mail e senha.
+
+   # só tirar de comentario quando quiser desbloquear o login
+   # session["tentativas"] = 0
 
     return render_template("login.html")
 

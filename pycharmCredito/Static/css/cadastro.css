@@ -1058,3 +1058,32 @@ footer {
 
 }
 
+/* Agrupa as mensagens de erro. */
+.flash-messages {
+    /* Cria espaço abaixo das mensagens. */
+    margin-bottom: 20px;
+}
+
+/* Define a aparência do aviso de erro. */
+.flash.error {
+    /* Deixa o fundo vermelho claro. */
+    background-color: #fff0f0;
+
+    /* Define a cor vermelha do texto. */
+    color: #b33a3a;
+
+    /* Cria espaço entre o texto e as bordas da caixa. */
+    padding: 12px;
+
+    /* Arredonda os cantos da caixa. */
+    border-radius: 8px;
+
+    /* Centraliza a mensagem. */
+    text-align: center;
+
+    /* Define o tamanho das letras. */
+    font-size: 14px;
+
+    /* Separa uma mensagem da outra. */
+    margin-bottom: 10px;
+}
