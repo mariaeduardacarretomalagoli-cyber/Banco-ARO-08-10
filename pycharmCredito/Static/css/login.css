@@ -1,0 +1,864 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+/* =========================================================
+   RESET GERAL
+   ========================================================= */
+
+/*
+   O * seleciona todos os elementos da página.
+*/
+
+* {
+
+    /* Remove margens padrão */
+    margin: 0;
+
+    /* Remove espaçamentos internos padrão */
+    padding: 0;
+
+    /*
+       Faz width e height considerarem
+       também padding e borda.
+    */
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+
+    /*
+       Define a fonte utilizada em toda a página.
+    */
+    font-family: 'Inter', sans-serif;
+
+    /*
+       Cor de fundo da página.
+    */
+    background-color: #faf9f8;
+
+    /*
+       Cor padrão dos textos.
+    */
+    color: #25232a;
+
+    /*
+       Faz o body ocupar no mínimo
+       toda a altura da tela.
+    */
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   PÁGINA PRINCIPAL
+   ========================================================= */
+
+/*
+   Esse elemento contém:
+   - logo
+   - card de login
+*/
+
+.pagina-login {
+
+    /*
+       Ocupa toda a largura da tela.
+    */
+    width: 100%;
+
+    /*
+       Ocupa toda a altura da tela.
+    */
+    min-height: 100vh;
+
+    /*
+       Ativa o Flexbox.
+    */
+    display: flex;
+
+    /*
+       Centraliza os elementos verticalmente.
+    */
+    align-items: center;
+
+    /*
+       Centraliza o conjunto horizontalmente.
+    */
+    justify-content: center;
+
+    /*
+       Cria espaço entre o logo e o card.
+    */
+    gap: 80px;
+
+    /*
+       Cria espaço interno nas laterais.
+    */
+    padding: 40px;
+}
+
+
+/* =========================================================
+   ÁREA DO LOGO
+   ========================================================= */
+
+/*
+   Define a área onde o logo ARO ficará.
+*/
+
+.area-logo {
+
+    /*
+       Define uma largura para a área do logo.
+    */
+    width: 240px;
+
+    /*
+       Centraliza o logo dentro da área.
+    */
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   LOGO ARO
+   ========================================================= */
+
+.logo-aro {
+
+    /*
+       Define a largura máxima do logo.
+    */
+    width: 170px;
+
+    /*
+       Impede que a imagem fique maior
+       que o tamanho definido.
+    */
+    max-width: 100%;
+
+    /*
+       Faz a altura ser calculada
+       proporcionalmente à largura.
+    */
+    height: auto;
+
+    /*
+       Impede que a imagem fique esticada.
+    */
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   ÁREA DO LOGIN
+   ========================================================= */
+
+.area-login {
+
+    /*
+       Define a largura da área de login.
+    */
+    width: 550px;
+
+    /*
+       Impede que ela fique maior
+       que o tamanho definido.
+    */
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   CARD DE LOGIN
+   ========================================================= */
+
+/*
+   Caixa branca que contém os campos
+   e o botão de login.
+*/
+
+.card-login {
+
+    /*
+       Ocupa toda a largura da área.
+    */
+    width: 100%;
+
+    /*
+       Define a altura aproximada do card
+       apresentado na imagem.
+    */
+    min-height: 430px;
+
+    /*
+       Fundo branco.
+    */
+    background-color: #ffffff;
+
+    /*
+       Espaçamento interno.
+
+       30px cima
+       30px direita
+       40px baixo
+       30px esquerda
+    */
+    padding: 30px;
+
+    /*
+       Arredonda os cantos.
+    */
+    border-radius: 14px;
+
+    /*
+       Cria a sombra suave do card.
+    */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+
+    /*
+       Mantém o card centralizado.
+    */
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* =========================================================
+   CABEÇALHO DO LOGIN
+   ========================================================= */
+
+.cabecalho-login {
+
+    /*
+       Centraliza título e descrição.
+    */
+    text-align: center;
+
+    /*
+       Cria espaço abaixo do cabeçalho.
+    */
+    margin-bottom: 45px;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.cabecalho-login h1 {
+
+    /*
+       Cor roxa utilizada na identidade visual.
+    */
+    color: #604092;
+
+    /*
+       Tamanho do título.
+    */
+    font-size: 20px;
+
+    /*
+       Deixa o título em negrito.
+    */
+    font-weight: 700;
+
+    /*
+       Cria espaço abaixo do título.
+    */
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   DESCRIÇÃO
+   ========================================================= */
+
+.cabecalho-login p {
+
+    /*
+       Cor cinza do texto.
+    */
+    color: #89838d;
+
+    /*
+       Tamanho pequeno.
+    */
+    font-size: 9px;
+
+    /*
+       Espaçamento entre linhas.
+    */
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+   ========================================================= */
+
+.form-login {
+
+    /*
+       Faz o formulário ocupar toda
+       a largura do card.
+    */
+    width: 100%;
+}
+
+
+/* =========================================================
+   CAMPO
+   ========================================================= */
+
+.campo {
+
+    /*
+       Cria espaço entre os campos.
+    */
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.campo label {
+
+    /*
+       Faz o label ocupar uma linha.
+    */
+    display: block;
+
+    /*
+       Cor do texto.
+    */
+    color: #303030;
+
+    /*
+       Tamanho da fonte.
+    */
+    font-size: 8px;
+
+    /*
+       Deixa o texto em negrito.
+    */
+    font-weight: 700;
+
+    /*
+       Espaço entre label e input.
+    */
+    margin-bottom: 7px;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.campo input {
+
+    /*
+       Ocupa toda a largura disponível.
+    */
+    width: 100%;
+
+    /*
+       Altura do campo.
+    */
+    height: 35px;
+
+    /*
+       Remove a borda padrão.
+    */
+    border: none;
+
+    /*
+       Arredonda os cantos.
+    */
+    border-radius: 6px;
+
+    /*
+       Fundo cinza claro.
+    */
+    background-color: #f0eeee;
+
+    /*
+       Espaçamento interno lateral.
+    */
+    padding: 0 12px;
+
+    /*
+       Fonte utilizada dentro do campo.
+    */
+    font-family: 'Inter', sans-serif;
+
+    /*
+       Tamanho do texto.
+    */
+    font-size: 9px;
+
+    /*
+       Cor do texto digitado.
+    */
+    color: #444;
+
+    /*
+       Remove o contorno padrão.
+    */
+    outline: none;
+
+    /*
+       Suaviza alterações de aparência.
+    */
+    transition: 0.2s ease;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.campo input::placeholder {
+
+    /*
+       Cor do texto de exemplo.
+    */
+    color: #99939d;
+
+    /*
+       Mantém o placeholder visível.
+    */
+    opacity: 1;
+}
+
+
+/* =========================================================
+   INPUT QUANDO SELECIONADO
+   ========================================================= */
+
+.campo input:focus {
+
+    /*
+       Mantém o fundo claro.
+    */
+    background-color: #eeecec;
+
+    /*
+       Cria uma pequena borda roxa.
+    */
+    outline: 1px solid #70439b;
+}
+
+
+/* =========================================================
+   MENSAGENS DO FLASK
+   ========================================================= */
+
+.mensagens {
+
+    /*
+       Cria espaço abaixo da mensagem.
+    */
+    margin: 5px 0 15px;
+
+    /*
+       Centraliza o texto.
+    */
+    text-align: center;
+}
+
+
+/* Texto da mensagem */
+
+.mensagens p {
+
+    /*
+       Cor da mensagem.
+    */
+    color: #b33a3a;
+
+    /*
+       Tamanho do texto.
+    */
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   BOTÃO DE LOGIN
+   ========================================================= */
+
+.botao-login {
+
+    /*
+       Ocupa toda a largura do formulário.
+    */
+    width: 100%;
+
+    /*
+       Define a altura do botão.
+    */
+    height: 38px;
+
+    /*
+       Remove a borda.
+    */
+    border: none;
+
+    /*
+       Arredonda os cantos.
+    */
+    border-radius: 6px;
+
+    /*
+       Define a cor roxa do botão.
+    */
+    background-color: #63409a;
+
+    /*
+       Cor branca do texto.
+    */
+    color: #ffffff;
+
+    /*
+       Fonte do botão.
+    */
+    font-family: 'Inter', sans-serif;
+
+    /*
+       Tamanho do texto.
+    */
+    font-size: 9px;
+
+    /*
+       Deixa o texto em negrito.
+    */
+    font-weight: 700;
+
+    /*
+       Faz o cursor virar uma mão.
+    */
+    cursor: pointer;
+
+    /*
+       Cria uma pequena sombra.
+    */
+    box-shadow: 0 4px 8px rgba(99, 64, 154, 0.18);
+
+    /*
+       Suaviza o efeito hover.
+    */
+    transition: 0.2s ease;
+}
+
+
+/* =========================================================
+   HOVER DO BOTÃO
+   ========================================================= */
+
+.botao-login:hover {
+
+    /*
+       Escurece um pouco o roxo.
+    */
+    background-color: #543487;
+
+    /*
+       Move o botão levemente para cima.
+    */
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ÁREA "CRIAR CONTA"
+   ========================================================= */
+
+.criar-conta {
+
+    /*
+       Centraliza os textos.
+    */
+    text-align: center;
+
+    /*
+       Espaço acima da área.
+    */
+    margin-top: 28px;
+}
+
+
+/* Texto "Ainda não possui..." */
+
+.criar-conta p {
+
+    /*
+       Cor cinza.
+    */
+    color: #99939d;
+
+    /*
+       Tamanho pequeno.
+    */
+    font-size: 8px;
+
+    /*
+       Espaço abaixo do texto.
+    */
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   LINK "CRIAR UMA CONTA"
+   ========================================================= */
+
+.criar-conta a {
+
+    /*
+       Cor roxa.
+    */
+    color: #63409a;
+
+    /*
+       Deixa o link em negrito.
+    */
+    font-weight: 700;
+
+    /*
+       Remove o sublinhado.
+    */
+    text-decoration: none;
+
+    /*
+       Tamanho do texto.
+    */
+    font-size: 9px;
+}
+
+
+/* Efeito ao passar o mouse */
+
+.criar-conta a:hover {
+
+    /*
+       Adiciona sublinhado.
+    */
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   AVISO DE SEGURANÇA
+   ========================================================= */
+
+.seguranca {
+
+    /*
+       Centraliza o conteúdo.
+    */
+    display: flex;
+
+    /*
+       Centraliza verticalmente.
+    */
+    align-items: center;
+
+    /*
+       Centraliza horizontalmente.
+    */
+    justify-content: center;
+
+    /*
+       Cria espaço acima.
+    */
+    margin-top: 12px;
+
+    /*
+       Cor do texto.
+    */
+    color: #99939d;
+
+    /*
+       Tamanho da fonte.
+    */
+    font-size: 7px;
+}
+
+
+/* =========================================================
+   ÍCONE DE CADEADO
+   ========================================================= */
+
+.cadeado {
+
+    /*
+       Cria espaço entre o ícone e o texto.
+    */
+    margin-right: 6px;
+
+    /*
+       Define o tamanho do ícone.
+    */
+    font-size: 10px;
+
+    /*
+       Define a cor.
+    */
+    color: #77717d;
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+/*
+   Quando a tela tiver até 900px,
+   reduzimos o espaço entre logo e login.
+*/
+
+@media (max-width: 900px) {
+
+    .pagina-login {
+
+        /*
+           Reduz o espaço entre os elementos.
+        */
+        gap: 40px;
+
+        /*
+           Reduz o padding.
+        */
+        padding: 30px;
+    }
+
+    /*
+       Diminui o tamanho do logo.
+    */
+    .logo-aro {
+        width: 140px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES
+   ========================================================= */
+
+/*
+   Quando a tela tiver até 700px,
+   logo e login passam a ficar um
+   abaixo do outro.
+*/
+
+@media (max-width: 700px) {
+
+    .pagina-login {
+
+        /*
+           Muda a direção para vertical.
+        */
+        flex-direction: column;
+
+        /*
+           Diminui o espaço entre os elementos.
+        */
+        gap: 25px;
+
+        /*
+           Permite rolagem caso necessário.
+        */
+        padding: 30px 20px;
+    }
+
+
+    /*
+       Área do logo ocupa toda a largura.
+    */
+    .area-logo {
+        width: 100%;
+    }
+
+
+    /*
+       Logo fica menor no celular.
+    */
+    .logo-aro {
+        width: 120px;
+    }
+
+
+    /*
+       Área do login ocupa toda a largura.
+    */
+    .area-login {
+        width: 100%;
+    }
+
+
+    /*
+       Card fica um pouco menor.
+    */
+    .card-login {
+        min-height: auto;
+
+        padding: 30px 22px;
+    }
+
+
+    /*
+       Reduz o espaço abaixo do cabeçalho.
+    */
+    .cabecalho-login {
+        margin-bottom: 30px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    /*
+       Reduz o padding do card.
+    */
+    .card-login {
+        padding: 25px 18px;
+    }
+
+
+    /*
+       Reduz o tamanho do título.
+    */
+    .cabecalho-login h1 {
+        font-size: 18px;
+    }
+
+
+    /*
+       Reduz o tamanho da descrição.
+    */
+    .cabecalho-login p {
+        font-size: 8px;
+    }
+
+}

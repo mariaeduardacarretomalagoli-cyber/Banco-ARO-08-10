@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <!-- Define a codificação de caracteres da página -->
+    <meta charset="UTF-8">
+
+    <!-- Faz a página se adaptar a celulares e tablets -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Nome que aparece na aba do navegador -->
+    <title>Entrar | ARO</title>
+
+    <!-- Conecta o HTML ao arquivo CSS -->
+    <link rel="stylesheet" href="static/css/login.css">
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CONTAINER PRINCIPAL
+         Contém o logo e o formulário de login
+         ===================================================== -->
+
+    <main class="pagina-login">
+
+
+        <!-- =================================================
+             ÁREA DO LOGO
+             ================================================= -->
+
+        <section class="area-logo">
+
+            <!--
+                Imagem do logo ARO.
+
+                O arquivo deve estar em:
+                static/img/logo-aro.png
+            -->
+
+            <img src="{{ url_for('static', filename='img/logo-aro.png') }}" alt="Logo ARO" class="logo-aro">
+
+        </section>
+
+
+        <!-- =================================================
+             ÁREA DO LOGIN
+             ================================================= -->
+
+        <section class="area-login">
+
+
+            <!-- =============================================
+                 CARD DO LOGIN
+                 ============================================= -->
+
+            <div class="card-login">
+
+
+                <!-- =========================================
+                     CABEÇALHO
+                     ========================================= -->
+
+                <div class="cabecalho-login">
+
+                    <!-- Título principal -->
+                    <h1>Entre na sua conta</h1>
+
+                    <!-- Texto explicativo -->
+                    <p>
+                        Informe seus dados de acesso abaixo para prosseguir.
+                    </p>
+
+                </div>
+
+
+                <!-- =========================================
+                     FORMULÁRIO
+                     ========================================= -->
+
+                <form action="/login" method="POST" class="form-login">
+
+
+                    <!-- =====================================
+                         CAMPO DE E-MAIL
+                         ===================================== -->
+
+                    <div class="campo">
+
+                        <label for="email">
+                            E-mail
+                        </label>
+
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         CAMPO DE SENHA
+                         ===================================== -->
+
+                    <div class="campo">
+
+                        <label for="senha">
+                            Senha
+                        </label>
+
+                        <input type="password" id="senha" name="senha" placeholder="••••••••" required>
+
+                    </div>
+
+                    <!-- =====================================
+                         MENSAGENS DO FLASK
+                         ===================================== -->
+
+                    {% with mensagens = get_flashed_messages() %}
+
+                    {% if mensagens %}
+
+                    <div class="mensagens">
+
+                        {% for mensagem in mensagens %}
+
+                        <p>{{ mensagem }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% endif %}
+
+                    {% endwith %}
+
+
+                    <!-- =====================================
+                         BOTÃO DE LOGIN
+                         ===================================== -->
+
+                    <button type="submit" class="botao-login">
+                        ENTRAR NA MINHA CONTA
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
+            <!-- =============================================
+                 CRIAR CONTA
+                 ============================================= -->
+
+            <div class="criar-conta">
+
+                <p>
+                    Ainda não possui uma conta?
+                </p>
+
+                <!--
+                    Leva o usuário para a página de cadastro.
+                -->
+
+                <a href="{{ url_for('pagina_cadastro') }}">
+                    Criar uma conta
+                </a>
+
+            </div>
+
+
+            <!-- =============================================
+                 AVISO DE SEGURANÇA
+                 ============================================= -->
+
+            <div class="seguranca">
+
+                <!-- Ícone de cadeado -->
+                <span class="cadeado">♙</span>
+
+                <span>
+                    Ambiente seguro com criptografia 256-bit
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

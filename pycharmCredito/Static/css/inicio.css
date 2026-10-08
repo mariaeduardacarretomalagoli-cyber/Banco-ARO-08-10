@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F6F3F2;
+}
+
+header {
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h2 {
+    color: #5B3A8E;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #5B3A8E;
+}
+
+header span {
+    color: #5B3A8E;
+}
+
+main {
+    padding: 40px;
+}
+
+main h2 {
+    color: #5B3A8E;
+}

@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Início - ARO</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+</head>
+
+<body>
+
+    <header>
+<h2>ARO</h2>
+
+        <nav>
+<a href="#">Início</a>
+<a href="#">Empréstimos</a>
+<a href="#">Novo empréstimo</a>
+<a href="#">Movimento</a>
+</nav>
+
+        <!-- Mostra o nome do usuário logado -->
+<span>{{ usuario }}</span>
+
+        <!-- Botão para editar os dados do usuário -->
+<a href="{{ url_for('editar_usuario') }}">Editar perfil</a>
+
+    </header>
+
+    <main>
+
+        <!-- Mensagem de boas-vindas -->
+<h2>Bem-vindo, {{ usuario }}!</h2>
+
+    </main>
+
+</body>
+</html>
+

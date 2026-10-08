@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar usuário - ARO</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/editar_usuario.css') }}">
+</head>
+
+<body>
+
+    <header>
+<h2>ARO</h2>
+
+        <nav>
+<a href="{{ url_for('novo') }}">Início</a>
+<a href="#">Empréstimos</a>
+<a href="#">Novo empréstimo</a>
+<a href="#">Movimento</a>
+</nav>
+
+        <span>{{ session["nome_usuario"] }}</span>
+</header>
+
+    <main>
+
+        <h2>Editar usuário</h2>
+
+        <!-- Mensagens do Flask -->
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+<p>{{ message }}</p>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+        <form action="{{ url_for('salvar_edicao') }}" method="POST">
+
+            <!-- Chave primária: não pode ser alterada -->
+<label>ID do usuário</label>
+<input type="text" value="{{ usuario[0] }}" disabled>
+
+            <br><br>
+
+            <!-- Nome -->
+<label>Nome completo</label>
+<input type="text" name="nome" value="{{ usuario[1] }}" required>
+
+            <br><br>
+
+            <!-- E-mail -->
+<label>E-mail</label>
+<input type="email" name="email" value="{{ usuario[2] }}" required>
+
+            <br><br>
+
+            <!-- Senha -->
+<label>Nova senha</label>
+<input type="password" name="senha"
+
+                   placeholder="Deixe vazio para manter a senha atual">
+
+            <br><br>
+
+            <!-- Renda mensal -->
+<label>Renda mensal</label>
+<input type="text" name="renda_mensal" value="{{ usuario[3] }}" required>
+
+            <br><br>
+
+            <!-- Despesas mensais -->
+<label>Despesas mensais</label>
+<input type="text" name="despesas_mensal" value="{{ usuario[4] }}" required>
+
+            <br><br>
+
+            <!-- Tipo de usuário -->
+<label>Tipo de usuário</label>
+<input type="text" value="{{ usuario[5] }}" disabled>
+
+            <br><br>
+
+            <button type="submit">Salvar alterações</button>
+
+            <a href="{{ url_for('novo') }}">Cancelar</a>
+
+        </form>
+
+    </main>
+
+</body>
+</html>
+

@@ -1,0 +1,624 @@
+/* Importa a fonte Inter do Google Fonts.
+   Os pesos disponíveis são: 400, 500, 600, 700 e 800. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+/* =========================================================
+   CONFIGURAÇÕES GERAIS
+   ========================================================= */
+
+/* Remove as margens e espaçamentos padrão de todos os elementos.
+   O box-sizing facilita o controle do tamanho dos elementos. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Define a fonte principal da página, a cor de fundo
+   e a cor padrão dos textos. */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ddd2eb;
+    color: #25232A;
+}
+
+/* Adiciona um espaço abaixo dos títulos h2. */
+h2 {
+    margin-bottom: 15px;
+}
+
+/* Adiciona um espaço abaixo dos parágrafos. */
+p {
+    margin-bottom: 15px;
+}
+
+/* Remove o sublinhado dos links e define a cor roxa. */
+a {
+    text-decoration: none;
+    color: #5B3A8E;
+}
+
+/* Faz com que as imagens nunca ultrapassem o tamanho
+   do elemento onde estão inseridas. */
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+/* Define a cor de fundo do elemento header. */
+header {
+    background-color: #6A4598;
+}
+
+/* Organiza os elementos da navegação lado a lado,
+   deixando o logo de um lado e o menu do outro. */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Cria espaçamento interno vertical e horizontal. */
+    padding: 20px 7%;
+
+    /* Define a cor de fundo da navegação. */
+    background-color: #dcd0eb;
+}
+
+/* Estiliza o título/logo dentro da navegação. */
+nav h1 {
+    font-size: 35px;
+    color: #5B3A8E;
+    font-weight: 800;
+}
+
+/* Organiza os links do menu horizontalmente
+   e cria espaço entre eles. */
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Define o tamanho e a espessura dos textos dos links. */
+.menu a {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Estiliza especificamente o botão "Entrar". */
+.menu .entrar {
+    background-color: #5B3A8E;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 5px;
+}
+
+/* Estiliza o aviso que aparece no cabeçalho.
+   O texto fica centralizado e pequeno. */
+.aviso {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    padding: 5px;
+    margin: 0;
+}
+
+
+/* =========================================================
+   SEÇÃO INICIAL
+   ========================================================= */
+
+/* Organiza o conteúdo inicial em duas partes:
+   texto de um lado e imagem do outro. */
+.inicio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+
+    /* Espaçamento interno da seção. */
+    padding: 60px 7%;
+
+    /* Cria uma linha roxa na parte inferior. */
+    border-bottom: 4px solid #6A4598;
+}
+
+/* Define que o bloco de texto ocupará metade da seção. */
+.conteudo {
+    width: 50%;
+}
+
+/* Estiliza a pequena etiqueta acima do título. */
+.etiqueta {
+    display: inline-block;
+
+    /* Espaçamento interno da etiqueta. */
+    padding: 10px 25px;
+
+    /* Cor de fundo e formato arredondado. */
+    background-color: #d2b0f1;
+    border-radius: 30px;
+
+    color: #5B3A8E;
+    font-size: 13px;
+    font-weight: 500;
+
+    /* Espaço abaixo da etiqueta. */
+    margin-bottom: 20px;
+}
+
+/* Estiliza o título principal da página. */
+.inicio h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #5B3A8E;
+
+    /* Define o espaçamento entre as linhas. */
+    line-height: 1.2;
+}
+
+/* Estiliza o texto de apresentação da seção inicial. */
+.inicio p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #77727F;
+    line-height: 1.5;
+
+    /* Espaço abaixo do parágrafo. */
+    margin-bottom: 30px;
+}
+
+/* Define o tamanho da imagem da seção inicial. */
+.inicio img {
+    width: 45%;
+    height: auto;
+
+    /* Mantém a proporção da imagem. */
+    object-fit: contain;
+}
+
+/* Estiliza o botão da seção inicial. */
+.botao {
+    display: inline-block;
+
+    padding: 12px 45px;
+
+    /* Cria uma borda roxa ao redor do botão. */
+    border: 2px solid #5B3A8E;
+
+    /* Deixa o botão arredondado. */
+    border-radius: 30px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SEÇÃO DE SOLUÇÕES
+   ========================================================= */
+
+/* Centraliza o conteúdo da seção de soluções
+   e cria espaçamento interno. */
+.solucoes {
+    text-align: center;
+    padding: 60px 7%;
+}
+
+/* Estiliza o título da seção. */
+.solucoes h2 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Estiliza o texto abaixo do título. */
+.solucoes>p {
+    color: #5B3A8E;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+/* Organiza os cards lado a lado. */
+.cards {
+    display: flex;
+
+    /* Distribui os cards pelo espaço disponível. */
+    justify-content: space-between;
+
+    /* Cria espaço entre os cards. */
+    gap: 20px;
+
+    /* Cria espaço acima dos cards. */
+    margin-top: 40px;
+}
+
+/* Define o comportamento de cada card. */
+.card {
+    flex: 1;
+    min-width: 0;
+
+    /* Centraliza o conteúdo do card. */
+    text-align: center;
+}
+
+/* Define o tamanho das imagens/ícones dos cards. */
+.icone-img {
+    display: block;
+    width: 110px;
+    height: 110px;
+
+    /* Evita que a imagem fique deformada. */
+    object-fit: contain;
+
+    /* Centraliza a imagem e cria espaço abaixo dela. */
+    margin: 0 auto 20px;
+}
+
+/* Estiliza o título de cada card. */
+.card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Estiliza o texto dos cards. */
+.card p {
+    color: #77727F;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SEÇÃO DE SEGURANÇA
+   ========================================================= */
+
+/* Cria uma seção dividida entre imagem e texto. */
+.seguranca {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    padding: 60px 7%;
+
+    /* Fundo roxo claro. */
+    background-color: #c5a0f4;
+}
+
+/* Define o tamanho da imagem da seção de segurança. */
+.seguranca img {
+    width: 35%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Faz o bloco de texto ocupar o espaço restante. */
+.seguranca div {
+    flex: 1;
+}
+
+/* Estiliza o pequeno título acima do título principal. */
+.seguranca h4 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Estiliza o título principal da seção de segurança. */
+.seguranca h2 {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Estiliza o parágrafo da seção de segurança. */
+.seguranca p {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SEÇÃO DE PRATICIDADE
+   ========================================================= */
+
+/* Organiza texto e imagem lado a lado. */
+.praticidade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+
+    padding: 60px 7%;
+}
+
+/* Define que o bloco de texto ocupará metade da seção. */
+.praticidade div {
+    width: 50%;
+}
+
+/* Estiliza o pequeno título da seção. */
+.praticidade h4 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Estiliza o título principal. */
+.praticidade h2 {
+    color: #5B3A8E;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* Estiliza o texto da seção. */
+.praticidade p {
+    color: #77727F;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Define o tamanho da imagem da seção. */
+.praticidade img {
+    width: 35%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   CHAMADA FINAL
+   ========================================================= */
+
+/* Cria a seção final de chamada para ação. */
+.final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    padding: 45px 7%;
+
+    background-color: #c5a0f4;
+    color: white;
+}
+
+/* Define o tamanho do bloco de texto. */
+.final div {
+    width: 60%;
+}
+
+/* Estiliza o título da chamada final. */
+.final h2 {
+    max-width: 450px;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* Estiliza o texto da chamada final. */
+.final p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Estiliza o botão da chamada final. */
+.botao-final {
+    display: inline-block;
+
+    padding: 15px 30px;
+
+    /* Deixa o botão arredondado. */
+    border-radius: 30px;
+
+    background-color: #5B3A8E;
+    color: white;
+
+    /* Cria uma borda branca. */
+    border: 2px solid white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    /* Centraliza o texto dentro do botão. */
+    text-align: center;
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+/* Define o espaçamento e o alinhamento do rodapé. */
+footer {
+    padding: 35px;
+    text-align: center;
+
+    background-color: #ddd2eb;
+}
+
+/* Organiza os links do rodapé lado a lado. */
+.links {
+    display: flex;
+    justify-content: center;
+
+    /* Espaço entre os links. */
+    gap: 40px;
+
+    /* Espaço abaixo dos links. */
+    margin-bottom: 25px;
+}
+
+/* Estiliza os links do rodapé. */
+.links a {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Estiliza o texto do rodapé. */
+footer p {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+/* Estiliza o título menor do rodapé. */
+footer h4 {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - TABLET
+   ========================================================= */
+
+/* Essas regras serão aplicadas quando a tela
+   tiver no máximo 900px de largura. */
+@media (max-width: 900px) {
+
+    /* Diminui o espaço entre os itens do menu.
+       Permite que eles quebrem para outra linha. */
+    .menu {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Diminui o tamanho do título principal. */
+    .inicio h2 {
+        font-size: 32px;
+    }
+
+    /* Permite que os cards ocupem mais de uma linha. */
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Cada card passa a ocupar aproximadamente 45% da largura. */
+    .card {
+        flex: none;
+        width: 45%;
+    }
+
+    /* Diminui o tamanho do título da seção de segurança. */
+    .seguranca h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - CELULAR
+   ========================================================= */
+
+/* Essas regras serão aplicadas em telas
+   com no máximo 600px de largura. */
+@media (max-width: 600px) {
+
+    /* Coloca o logo e o menu um abaixo do outro. */
+    nav {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Centraliza os links do menu e diminui o espaço entre eles. */
+    .menu {
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Todas essas seções passam de horizontal
+       para vertical no celular. */
+    .inicio,
+    .seguranca,
+    .praticidade,
+    .final {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    /* Faz os blocos de conteúdo ocuparem toda a largura. */
+    .conteudo,
+    .seguranca div,
+    .praticidade div,
+    .final div {
+        width: 100%;
+    }
+
+    /* Diminui o título principal no celular. */
+    .inicio h2 {
+        font-size: 28px;
+    }
+
+    /* Aumenta a largura das imagens para ficarem
+       melhor visíveis em telas pequenas. */
+    .inicio img,
+    .seguranca img,
+    .praticidade img {
+        width: 80%;
+    }
+
+    /* Diminui o título da seção de soluções. */
+    .solucoes h2 {
+        font-size: 24px;
+    }
+
+    /* Cada card passa a ocupar uma linha inteira. */
+    .card {
+        width: 100%;
+    }
+
+    /* Reduz um pouco o tamanho dos ícones no celular. */
+    .icone-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Ajusta o tamanho do título da segurança. */
+    .seguranca h2 {
+        font-size: 26px;
+    }
+
+    /* Ajusta o tamanho do título da praticidade. */
+    .praticidade h2 {
+        font-size: 28px;
+    }
+
+    /* Ajusta o tamanho do título da chamada final
+       e centraliza horizontalmente. */
+    .final h2 {
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Permite que os links do rodapé quebrem
+       para várias linhas em telas pequenas. */
+    .links {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
