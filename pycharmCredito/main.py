@@ -1,6 +1,8 @@
 
-from flask import Flask, render_template, request, flash, redirect, url_for, session, send_file
+from flask import Flask, render_template, request, flash, redirect, url_for, session
+
 import fdb
+
 from flask_bcrypt import Bcrypt
 
 
@@ -8,7 +10,7 @@ app = Flask(__name__)
 
 bcrypt = Bcrypt(app)
 
-app.config['SECRET_KEY'] = 'Chavesdfglkjhgfdshjkjhgfdcvbmnb'
+app.config["SECRET_KEY"] = "Chavesdfglkjhgfdshjkjhgfdcvbmnb"
 
 
 # ==========================================
@@ -40,7 +42,7 @@ con = fdb.connect(
 
 # ==========================================
 
-# VERIFICAÇÃO DE SENHA
+# VERIFICAÇÃO DE SENHA FORTE
 
 # ==========================================
 
@@ -73,6 +75,80 @@ def senha_forte(senha):
 
 # ==========================================
 
+# VERIFICA A SENHA CRIPTOGRAFADA
+
+# ==========================================
+
+def verificar_senha(senha_hash, senha):
+
+    # Verifica os hashes antigos
+
+    if senha_hash.startswith("$2"):
+
+        return bcrypt.check_password_hash(senha_hash, senha)
+
+    # Verifica os hashes novos
+
+    else:
+
+        return bcrypt.check_password_hash(
+
+            bytes.fromhex(senha_hash),
+
+            senha
+
+        )
+
+
+# ==========================================
+
+# VERIFICA SE O USUÁRIO ESTÁ AUTENTICADO
+
+# ==========================================
+
+def usuario_autenticado():
+
+    # Verifica se está logado
+
+    if "id_usuario" not in session:
+
+        return False
+
+    cursor = con.cursor()
+
+    try:
+
+        # Busca se o usuário está ativo
+
+        cursor.execute("""
+
+                       SELECT ATIVO
+
+                       FROM USUARIO
+
+                       WHERE ID_USUARIO = ?
+
+                       """, (session["id_usuario"],))
+
+        usuario = cursor.fetchone()
+
+        # Só permite usuário existente e ativo
+
+        if usuario:
+
+            if usuario[0] == 1:
+
+                return True
+
+        return False
+
+    finally:
+
+        cursor.close()
+
+
+# ==========================================
+
 # PÁGINA INICIAL
 
 # ==========================================
@@ -94,35 +170,35 @@ def landing():
 
 def novo():
 
-    # Verifica se o usuário está logado
+    # Verifica se está logado e ativo
 
-    if 'id_usuario' not in session:
-
-        flash('Precisa estar logado', 'error')
-
-        return redirect(url_for('login'))
-
-    # Verifica se o nome está salvo na sessão
-
-    if 'nome_usuario' not in session:
+    if not usuario_autenticado():
 
         session.clear()
 
-        flash('Faça login novamente!', 'error')
+        flash("Precisa estar logado e ativo!", "error")
 
-        return redirect(url_for('login'))
+        return redirect(url_for("login"))
 
-    else:
+    # Verifica se o nome está na sessão
 
-        # Envia o nome do usuário para o inicio.html
+    if "nome_usuario" not in session:
 
-        return render_template(
+        session.clear()
 
-            'inicio.html',
+        flash("Faça login novamente!", "error")
 
-            usuario=session["nome_usuario"]
+        return redirect(url_for("login"))
 
-        )
+    # Mostra a página com o nome do usuário
+
+    return render_template(
+
+        "inicio.html",
+
+        usuario=session["nome_usuario"]
+
+    )
 
 
 # ==========================================
@@ -148,7 +224,7 @@ def pagina_cadastro():
 
 def cadastro():
 
-    # Recebe os dados enviados pelo formulário
+    # Recebe os dados do HTML
 
     nome = request.form["nome"]
 
@@ -160,13 +236,11 @@ def cadastro():
 
     despesa_mensal = request.form["despesas_mensal"]
 
-    tipo_usuario = request.form["tipo_usuario"]
+    # Tipo de usuário empreendedor
 
-    # ==========================================
+    tipo_usuario = 7
 
-    # VERIFICA OS CAMPOS
-
-    # ==========================================
+    # Verifica se os campos estão preenchidos
 
     if not nome or not email or not senha or not receita_mensal or not despesa_mensal:
 
@@ -174,11 +248,7 @@ def cadastro():
 
         return redirect(url_for("pagina_cadastro"))
 
-    # ==========================================
-
-    # VERIFICA A SENHA
-
-    # ==========================================
+    # Verifica se a senha é forte
 
     if not senha_forte(senha):
 
@@ -192,21 +262,19 @@ def cadastro():
 
         return redirect(url_for("pagina_cadastro"))
 
-    # Abre o cursor do banco
-
     cursor = con.cursor()
 
     try:
 
         # ==========================================
 
-        # VERIFICA SE O E-MAIL JÁ EXISTE
+        # NÃO PERMITE E-MAIL REPETIDO
 
         # ==========================================
 
         cursor.execute("""
 
-                       SELECT 1
+                       SELECT ID_USUARIO
 
                        FROM USUARIO
 
@@ -216,33 +284,15 @@ def cadastro():
 
         if cursor.fetchone():
 
-            flash(
-
-                "Este e-mail já está cadastrado!",
-
-                "error"
-
-            )
+            flash("Este e-mail já está cadastrado!", "error")
 
             return redirect(url_for("pagina_cadastro"))
 
         # ==========================================
 
-        # CONVERTE OS VALORES FINANCEIROS
+        # CONVERTE RENDA E DESPESAS
 
         # ==========================================
-
-        receita_mensal = receita_mensal.replace("R$", "").replace(" ", "").strip()
-
-        despesa_mensal = despesa_mensal.replace("R$", "").replace(" ", "").strip()
-
-        if "," in receita_mensal:
-
-            receita_mensal = receita_mensal.replace(".", "").replace(",", ".")
-
-        if "," in despesa_mensal:
-
-            despesa_mensal = despesa_mensal.replace(".", "").replace(",", ".")
 
         receita_mensal = float(receita_mensal)
 
@@ -250,7 +300,7 @@ def cadastro():
 
         if receita_mensal < 0 or despesa_mensal < 0:
 
-            flash("A renda e as despesas não podem ser negativas.", "error")
+            flash("Os valores não podem ser negativos!", "error")
 
             return redirect(url_for("pagina_cadastro"))
 
@@ -260,11 +310,11 @@ def cadastro():
 
         # ==========================================
 
-        senha_hash = bcrypt.generate_password_hash(senha).decode("utf-8")
+        senha_hash = bcrypt.generate_password_hash(senha).hex()
 
         # ==========================================
 
-        # INSERE O USUÁRIO
+        # SALVA O USUÁRIO NO BANCO
 
         # ==========================================
 
@@ -292,17 +342,9 @@ def cadastro():
 
                        ))
 
-        # Salva no banco
-
         con.commit()
 
-        flash(
-
-            "Cadastro realizado com sucesso!",
-
-            "success"
-
-        )
+        flash("Cadastro realizado com sucesso!", "success")
 
         return redirect(url_for("login"))
 
@@ -310,13 +352,7 @@ def cadastro():
 
         con.rollback()
 
-        flash(
-
-            "Digite valores válidos para renda e despesas.",
-
-            "error"
-
-        )
+        flash("Digite valores válidos para renda e despesas.", "error")
 
         return redirect(url_for("pagina_cadastro"))
 
@@ -324,13 +360,7 @@ def cadastro():
 
         con.rollback()
 
-        flash(
-
-            f"Ocorreu um erro: {e}",
-
-            "error"
-
-        )
+        flash(f"Erro ao cadastrar: {e}", "error")
 
         return redirect(url_for("pagina_cadastro"))
 
@@ -348,6 +378,10 @@ def cadastro():
 @app.route("/login")
 
 def login():
+
+    # Para desbloqueio temporário durante os testes:
+
+    # session["tentativas"] = 0
 
     return render_template("login.html")
 
@@ -368,7 +402,19 @@ def entrar_usuario():
 
     senha = request.form["senha"]
 
-    # Abre o cursor
+    # Inicia o contador de tentativas
+
+    if "tentativas" not in session:
+
+        session["tentativas"] = 0
+
+    # Verifica se o login já está bloqueado
+
+    if session["tentativas"] >= 3:
+
+        flash("Login bloqueado após 3 tentativas!", "error")
+
+        return redirect(url_for("login"))
 
     cursor = con.cursor()
 
@@ -376,13 +422,13 @@ def entrar_usuario():
 
         # ==========================================
 
-        # BUSCA ID, NOME E SENHA DO USUÁRIO
+        # PROCURA O USUÁRIO PELO E-MAIL
 
         # ==========================================
 
         cursor.execute("""
 
-                       SELECT ID_USUARIO, NOME, SENHA
+                       SELECT ID_USUARIO, NOME, SENHA, ATIVO
 
                        FROM USUARIO
 
@@ -394,81 +440,63 @@ def entrar_usuario():
 
         # ==========================================
 
-        # VERIFICA SE O USUÁRIO EXISTE
+        # VERIFICA O LOGIN
 
         # ==========================================
 
-        if not usuario:
+        if usuario:
 
-            flash(
+            id_usuario, nome, senha_hash, ativo = usuario
 
-                "Usuário não encontrado",
+            # Não permite login de usuário inativo
 
-                "error"
+            if ativo != 1:
 
-            )
+                flash("Usuário inativo! Não é possível fazer login.", "error")
 
-            return redirect(url_for("login"))
+                return redirect(url_for("login"))
 
-        # Recebe os três dados encontrados
+            # Verifica se a senha está correta
 
-        id_usuario, nome, senha_hash = usuario
+            if verificar_senha(senha_hash, senha):
+
+                # Limpa as tentativas anteriores
+
+                session.clear()
+
+                # Guarda os dados do usuário logado
+
+                session["id_usuario"] = id_usuario
+
+                session["nome_usuario"] = nome
+
+                flash("Login realizado com sucesso!", "success")
+
+                return redirect(url_for("novo"))
 
         # ==========================================
 
-        # VERIFICA A SENHA
+        # CONTA AS TENTATIVAS INCORRETAS
 
         # ==========================================
 
-        if bcrypt.check_password_hash(senha_hash, senha):
+        session["tentativas"] = session["tentativas"] + 1
 
-            # Limpa dados de sessões anteriores
+        if session["tentativas"] >= 3:
 
-            session.clear()
-
-            # Guarda o ID do usuário
-
-            session["id_usuario"] = id_usuario
-
-            # Guarda o nome do usuário
-
-            session["nome_usuario"] = nome
-
-            # Mensagem de sucesso
-
-            flash(
-
-                "Login realizado com sucesso!",
-
-                "success"
-
-            )
-
-            # Redireciona para o início
-
-            return redirect(url_for("novo"))
+            flash("Login bloqueado após 3 tentativas!", "error")
 
         else:
 
-            flash(
+            flash("E-mail ou senha incorretos!", "error")
 
-                "E-mail ou senha incorretos!",
-
-                "error"
-
-            )
-
-            return redirect(url_for("login"))
+        return redirect(url_for("login"))
 
     except Exception as e:
 
-        flash(
+        con.rollback()
 
-            f"Ocorreu um erro: {e}",
-
-            "error"
-
-        )
+        flash(f"Ocorreu um erro: {e}", "error")
 
         return redirect(url_for("login"))
 
@@ -479,9 +507,29 @@ def entrar_usuario():
 
 # ==========================================
 
-# INICIA O SERVIDOR
+# LOGOUT
 
 # ==========================================
+
+@app.route("/logout", methods=["POST"])
+
+def logout():
+
+    # Verifica se o usuário está logado
+
+    if "id_usuario" not in session:
+
+        flash("Precisa estar logado!", "error")
+
+        return redirect(url_for("login"))
+
+    # Encerra a sessão
+
+    session.clear()
+
+    flash("Você saiu da sua conta!", "success")
+
+    return redirect(url_for("login"))
 
 
 # ==========================================
@@ -491,11 +539,16 @@ def entrar_usuario():
 # ==========================================
 
 @app.route("/editar_usuario")
-def editar_usuario():
-    # Verifica se está logado
 
-    if "id_usuario" not in session:
-        flash("Precisa estar logado!", "error")
+def editar_usuario():
+
+    # Verifica se está logado e ativo
+
+    if not usuario_autenticado():
+
+        session.clear()
+
+        flash("Precisa estar logado e ativo!", "error")
 
         return redirect(url_for("login"))
 
@@ -507,13 +560,9 @@ def editar_usuario():
 
         cursor.execute("""
 
-                       SELECT ID_USUARIO,
-                              NOME,
-                              EMAIL,
-                              RECEITA_MENSAL,
+                       SELECT ID_USUARIO, NOME, EMAIL,
 
-                              DESPESA_MENSAL,
-                              TIPO_USUARIO
+                              RECEITA_MENSAL, DESPESA_MENSAL, TIPO_USUARIO
 
                        FROM USUARIO
 
@@ -524,11 +573,20 @@ def editar_usuario():
         usuario = cursor.fetchone()
 
         if not usuario:
+
+            session.clear()
+
             flash("Usuário não encontrado!", "error")
 
             return redirect(url_for("login"))
 
-        return render_template("editar_usuario.html", usuario=usuario)
+        return render_template(
+
+            "editar_usuario.html",
+
+            usuario=usuario
+
+        )
 
     finally:
 
@@ -537,24 +595,29 @@ def editar_usuario():
 
 # ==========================================
 
-# SALVAR ALTERAÇÕES DO USUÁRIO
+# SALVAR EDIÇÃO DO USUÁRIO
 
 # ==========================================
 
 @app.route("/salvar_edicao", methods=["POST"])
-def salvar_edicao():
-    # Verifica se está logado
 
-    if "id_usuario" not in session:
-        flash("Precisa estar logado!", "error")
+def salvar_edicao():
+
+    # Verifica se está logado e ativo
+
+    if not usuario_autenticado():
+
+        session.clear()
+
+        flash("Precisa estar logado e ativo!", "error")
 
         return redirect(url_for("login"))
 
-    # Recebe os campos do HTML
+    # Recebe os dados do formulário
 
-    nome = request.form["nome"].strip()
+    nome = request.form["nome"]
 
-    email = request.form["email"].strip()
+    email = request.form["email"]
 
     senha = request.form["senha"]
 
@@ -562,14 +625,18 @@ def salvar_edicao():
 
     despesa_mensal = request.form["despesas_mensal"]
 
-    if not nome or not email:
-        flash("Preencha nome e e-mail!", "error")
+    # Verifica se os campos estão preenchidos
+
+    if not nome or not email or not receita_mensal or not despesa_mensal:
+
+        flash("Preencha todos os campos!", "error")
 
         return redirect(url_for("editar_usuario"))
 
-    # Se informar uma senha, verifica se é forte
+    # Verifica a nova senha
 
     if senha and not senha_forte(senha):
+
         flash("A nova senha não atende aos requisitos!", "error")
 
         return redirect(url_for("editar_usuario"))
@@ -578,7 +645,11 @@ def salvar_edicao():
 
     try:
 
-        # Verifica se outro usuário já possui esse e-mail
+        # ==========================================
+
+        # VERIFICA E-MAIL REPETIDO
+
+        # ==========================================
 
         cursor.execute("""
 
@@ -593,46 +664,115 @@ def salvar_edicao():
                        """, (email, session["id_usuario"]))
 
         if cursor.fetchone():
+
             flash("Este e-mail já está cadastrado!", "error")
 
             return redirect(url_for("editar_usuario"))
 
-        # Converte renda e despesas para números
+        # ==========================================
 
-        receita_mensal = receita_mensal.replace("R$", "").replace(" ", "")
+        # CONVERTE RENDA E DESPESAS
 
-        despesa_mensal = despesa_mensal.replace("R$", "").replace(" ", "")
-
-        if "," in receita_mensal:
-            receita_mensal = receita_mensal.replace(".", "").replace(",", ".")
-
-        if "," in despesa_mensal:
-            despesa_mensal = despesa_mensal.replace(".", "").replace(",", ".")
+        # ==========================================
 
         receita_mensal = float(receita_mensal)
 
         despesa_mensal = float(despesa_mensal)
 
         if receita_mensal < 0 or despesa_mensal < 0:
+
             flash("Os valores não podem ser negativos!", "error")
 
             return redirect(url_for("editar_usuario"))
 
-        # Se informou uma nova senha, atualiza a senha também
+        # ==========================================
+
+        # ATUALIZA OS DADOS
+
+        # ==========================================
 
         if senha:
 
-            senha_hash = bcrypt.generate_password_hash(senha).decode("utf-8")
+            # Busca a senha atual e as três anteriores
+
+            cursor.execute("""
+
+                           SELECT SENHA, SENHA_ANTERIOR1,
+
+                                  SENHA_ANTERIOR2, SENHA_ANTERIOR3
+
+                           FROM USUARIO
+
+                           WHERE ID_USUARIO = ?
+
+                           """, (session["id_usuario"],))
+
+            dados = cursor.fetchone()
+
+            if not dados:
+
+                session.clear()
+
+                flash("Usuário não encontrado!", "error")
+
+                return redirect(url_for("login"))
+
+            # ==========================================
+
+            # VERIFICA AS SENHAS ANTERIORES
+
+            # ==========================================
+
+            for senha_antiga in dados:
+
+                # Ignora os campos vazios
+
+                if senha_antiga:
+
+                    if verificar_senha(senha_antiga, senha):
+
+                        flash(
+
+                            "Você não pode reutilizar uma das últimas 3 senhas!",
+
+                            "error"
+
+                        )
+
+                        return redirect(url_for("editar_usuario"))
+
+            # ==========================================
+
+            # CRIPTOGRAFA A NOVA SENHA
+
+            # ==========================================
+
+            senha_hash = bcrypt.generate_password_hash(senha).hex()
+
+            # ==========================================
+
+            # ATUALIZA OS DADOS E O HISTÓRICO
+
+            # ==========================================
 
             cursor.execute("""
 
                            UPDATE USUARIO
 
-                           SET NOME           = ?,
-                               EMAIL          = ?,
-                               SENHA          = ?,
+                           SET NOME = ?,
+
+                               EMAIL = ?,
+
+                               SENHA_ANTERIOR3 = SENHA_ANTERIOR2,
+
+                               SENHA_ANTERIOR2 = SENHA_ANTERIOR1,
+
+                               SENHA_ANTERIOR1 = SENHA,
+
+                               SENHA = ?,
 
                                RECEITA_MENSAL = ?,
+
                                DESPESA_MENSAL = ?
 
                            WHERE ID_USUARIO = ?
@@ -655,16 +795,18 @@ def salvar_edicao():
 
         else:
 
-            # Se não informou senha, mantém a senha antiga
+            # Atualiza os dados sem modificar a senha
 
             cursor.execute("""
 
                            UPDATE USUARIO
 
-                           SET NOME           = ?,
-                               EMAIL          = ?,
+                           SET NOME = ?,
+
+                               EMAIL = ?,
 
                                RECEITA_MENSAL = ?,
+
                                DESPESA_MENSAL = ?
 
                            WHERE ID_USUARIO = ?
@@ -683,11 +825,15 @@ def salvar_edicao():
 
                            ))
 
-        # Salva as alterações
+        # ==========================================
+
+        # SALVA NO BANCO
+
+        # ==========================================
 
         con.commit()
 
-        # Atualiza o nome da sessão
+        # Atualiza o nome na sessão
 
         session["nome_usuario"] = nome
 
@@ -716,37 +862,11 @@ def salvar_edicao():
         cursor.close()
 
 
+# ==========================================
 
+# INICIA O SERVIDOR
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# ==========================================
 
 if __name__ == "__main__":
 

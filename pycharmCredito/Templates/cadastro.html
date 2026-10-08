@@ -18,22 +18,37 @@
 
 <body>
 
-    <!-- Mensagens do Flask -->
+    <!-- ==========================================
+
+         MENSAGENS DO FLASK
+
+         ========================================== -->
+
+    <!-- Mostra apenas mensagens de erro no cadastro -->
 
     {% with messages = get_flashed_messages(with_categories=true) %}
 
         {% if messages %}
-<div class="flash-messages">
 
-                {% for category, message in messages %}
-<div class="flash {{ category }}">{{ message }}</div>
+            {% for category, message in messages %}
 
-                {% endfor %}
+                {% if category == "error" %}
+
+                    <div class="flash-messages">
+<div class="flash {{ category }}">
+
+                            {{ message }}
 </div>
+</div>
+
+                {% endif %}
+
+            {% endfor %}
 
         {% endif %}
 
     {% endwith %}
+
 
     <!-- ==========================================
 
@@ -63,6 +78,7 @@
                 capacidade de pagamento com precisão analítica.
 </p>
 
+
             <!-- ==========================================
 
                  FORMULÁRIO
@@ -76,30 +92,69 @@
 
                 <!-- Nome completo -->
 <div class="campo">
-<label for="nome">Nome completo</label>
-<input type="text" id="nome" name="nome"
 
-                           placeholder="Ex: Carlos Eduardo Silveira" required>
-</div>
+                    <label for="nome">Nome completo</label>
+
+                    <input
+
+                        type="text"
+
+                        id="nome"
+
+                        name="nome"
+
+                        placeholder="Ex: Carlos Eduardo Silveira"
+
+                        required
+>
+
+                </div>
 
                 <!-- E-mail -->
 <div class="campo">
-<label for="email">E-mail corporativo ou pessoal</label>
-<input type="email" id="email" name="email"
 
-                           placeholder="carlos@exemplo.com.br" required>
-</div>
+                    <label for="email">E-mail corporativo ou pessoal</label>
+
+                    <input
+
+                        type="email"
+
+                        id="email"
+
+                        name="email"
+
+                        placeholder="carlos@exemplo.com.br"
+
+                        required
+>
+
+                </div>
 
                 <!-- Senha -->
 <div class="campo">
-<label for="senha">Senha de acesso</label>
-<input type="password" id="senha" name="senha"
 
-                           placeholder="••••••••••••" minlength="8" required>
-</div>
+                    <label for="senha">Senha de acesso</label>
+
+                    <input
+
+                        type="password"
+
+                        id="senha"
+
+                        name="senha"
+
+                        placeholder="••••••••••••"
+
+                        minlength="8"
+
+                        required
+>
+
+                </div>
 
                 <!-- Separador -->
 <div class="separador"></div>
+
 
                 <!-- ==========================================
 
@@ -111,19 +166,52 @@
 
                 <!-- Renda mensal -->
 <div class="campo">
-<label for="renda">Renda mensal líquida</label>
-<input type="text" id="renda" name="renda_mensal"
 
-                           placeholder="R$ 0,00" required>
-</div>
+                    <label for="renda">Renda mensal líquida</label>
+
+                    <input
+
+                        type="number"
+
+                        id="renda"
+
+                        name="renda_mensal"
+
+                        placeholder="Ex: 3000"
+
+                        min="0"
+
+                        step="0.01"
+
+                        required
+>
+
+                </div>
 
                 <!-- Despesas mensais -->
 <div class="campo">
-<label for="despesas">Despesas fixas mês</label>
-<input type="text" id="despesas" name="despesas_mensal"
 
-                           placeholder="R$ 0,00" required>
-</div>
+                    <label for="despesas">Despesas fixas mês</label>
+
+                    <input
+
+                        type="number"
+
+                        id="despesas"
+
+                        name="despesas_mensal"
+
+                        placeholder="Ex: 1500"
+
+                        min="0"
+
+                        step="0.01"
+
+                        required
+>
+
+                </div>
+
 
                 <!-- ==========================================
 
@@ -132,7 +220,8 @@
                      ========================================== -->
 
                 <div class="aviso-seguranca">
-<p>
+
+                    <p>
 
                         Seus dados estão protegidos de acordo
 
@@ -142,7 +231,9 @@
 
                         ponderado.
 </p>
-</div>
+
+                </div>
+
 
                 <!-- Botão de cadastro -->
 <button type="submit" class="botao-cadastrar">
@@ -150,9 +241,10 @@
                     Cadastrar
 </button>
 
+
                 <!-- ==========================================
 
-                     NOVO: LINK PARA LOGIN
+                     LINK PARA LOGIN
 
                      ========================================== -->
 
@@ -166,6 +258,7 @@
 
         </section>
 
+
         <!-- ==========================================
 
              RODAPÉ
@@ -173,9 +266,10 @@
              ========================================== -->
 
         <footer>
-<span>
 
-                Criptografia ponta a<br>
+            <span>
+
+                Criptografia ponta a
 
                 ponta
 </span>
@@ -184,7 +278,8 @@
 
                 Banco Central do Brasil
 </span>
-</footer>
+
+        </footer>
 
     </main>
 
